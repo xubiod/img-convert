@@ -42,26 +42,37 @@ made with go 1.20.5
 libraries used are from imports
 
 ------ decoder libraries ------
-bmp         => golang.org/x/image/bmp
-tiff        => golang.org/x/image/tiff
 gif         => image/gif
 jpeg/jpg    => image/jpeg
 png         => image/png
+
+bmp         => golang.org/x/image/bmp
+tiff        => golang.org/x/image/tiff
+
 webp        => github.com/chai2010/webp
+pbm         => github.com/jbuchbinder/gopnm
+pgm         => github.com/jbuchbinder/gopnm
+ppm         => github.com/jbuchbinder/gopnm
+
 jfif        => internally (i wrote it!)
 
 ------ encoder libraries ------
+gif         => image/gif
+jpeg/jpg    => image/jpeg
+png         => image/png
+
 bmp         => golang.org/x/image/bmp
 tiff        => golang.org/x/image/tiff
 vp8l        => golang.org/x/image/vp8l
 webp        => golang.org/x/image/webp
-gif         => image/gif
-jpeg/jpg    => image/jpeg
-png         => image/png
-jfif        => github.com/leotaku/mobi/jfif
 
-ui powered by imgui
-go bindings => github.com/AllenDang/cimgui-go`
+jfif        => github.com/leotaku/mobi/jfif
+pbm         => github.com/jbuchbinder/gopnm
+pgm         => github.com/jbuchbinder/gopnm
+ppm         => github.com/jbuchbinder/gopnm
+
+------ other libraries ------
+imgui       => github.com/AllenDang/cimgui-go`
 
 var showCredit = false
 

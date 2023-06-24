@@ -2,6 +2,8 @@ github.com/AllenDang/cimgui-go v0.0.0-20230619023324-e4dae85333e0 h1:FiIxrM2FBAN
 github.com/AllenDang/cimgui-go v0.0.0-20230619023324-e4dae85333e0/go.mod h1:iNfbIyOBN8k3XScMxULbrwYbPsXEAUD0Jb6UwrspQb8=
 github.com/chai2010/webp v1.1.1 h1:jTRmEccAJ4MGrhFOrPMpNGIJ/eybIgwKpcACsrTEapk=
 github.com/chai2010/webp v1.1.1/go.mod h1:0XVwvZWdjjdxpUEIf7b9g9VkHFnInUSYujwqTLEuldU=
+github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0 h1:9GwwkVzUn1vRWAQ8GRu7UOaoM+FZGnvw88DsjyiqfXc=
+github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0/go.mod h1:6U0E76+sB1jTuSSXJjePtLd44vExeoYThOWgOoXo3x8=
 github.com/leotaku/mobi v0.0.0-20230426193406-3c3105acd3e2 h1:n9dcx9aDpDJHFns7w9H487rkEzVygjCTRyJxvUpx4H4=
 github.com/leotaku/mobi v0.0.0-20230426193406-3c3105acd3e2/go.mod h1:TzFZaVbA6vORK/tM81fExl35wboXdUkwHGVUmZf2ljQ=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=

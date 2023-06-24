@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	pnm "github.com/jbuchbinder/gopnm"
 	"golang.org/x/image/bmp"
 	"golang.org/x/image/tiff"
 	"golang.org/x/image/vp8l"
@@ -21,31 +22,37 @@ import (
 
 // Valid decoders
 var ValidInputTypes = []string{
+	"png",  // std/image
+	"gif",  // std/image
+	"jpeg", // std/image
+	"jpg",  // std/image
+
 	"bmp",  // golang.org/x/image
 	"tiff", // golang.org/x/image
 	"vp8l", // golang.org/x/image
 	"webp", // golang.org/x/image
 
-	"gif",  // std/image
-	"jpeg", // std/image
-	"jpg",  // std/image
-	"png",  // std/image
+	"pbm", // github.com/jbuchbinder/gopnm
+	"pgm", // github.com/jbuchbinder/gopnm
+	"ppm", // github.com/jbuchbinder/gopnm
 
 	"jfif", // self
 }
 
 // Valid encoders
 var ValidOutputTypes = []string{
+	"png",  // std/image
+	"gif",  // std/image
+	"jpeg", // std/image
+
 	"bmp",  // golang.org/x/image
 	"tiff", // golang.org/x/image
 
-	"gif",  // std/image
-	"jpeg", // std/image
-	//	"jpg",  // std/image
-	"png", // std/image
-
 	"jfif", // github.com/leotaku/mobi/jfif
 	"webp", // github.com/chai2010/webp
+	"pbm",  // github.com/jbuchbinder/gopnm
+	"pgm",  // github.com/jbuchbinder/gopnm
+	"ppm",  // github.com/jbuchbinder/gopnm
 }
 
 type QualityInformation struct {
@@ -110,6 +117,9 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	case ".jfif":
 		decodedImage, err = self_jfif.Decode(f)
+
+	case ".pbm", ".pgm", ".ppm":
+		decodedImage, err = pnm.Decode(f)
 	}
 
 	if err != nil {
@@ -151,6 +161,12 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 			Lossless: quality.Lossless,
 			Exact:    quality.WebpExact,
 		})
+	case "pbm":
+		err = pnm.Encode(r, decodedImage, pnm.PBM)
+	case "pgm":
+		err = pnm.Encode(r, decodedImage, pnm.PGM)
+	case "ppm":
+		err = pnm.Encode(r, decodedImage, pnm.PPM)
 	}
 
 	if err != nil {
