@@ -48,6 +48,7 @@ gif         => image/gif
 jpeg/jpg    => image/jpeg
 png         => image/png
 webp        => github.com/chai2010/webp
+jfif        => internally (i wrote it!)
 
 ------ encoder libraries ------
 bmp         => golang.org/x/image/bmp
@@ -251,16 +252,6 @@ func ui() {
 			toldErrors = false
 		}
 	})
-
-	//go func() {
-	//	ticker := time.NewTicker(16 * time.Millisecond)
-	//	for {
-	//		select {
-	//		case <-ticker.C:
-	//			backend.Refresh()
-	//		}
-	//	}
-	//}()
 
 	backend.Run(uiLoop)
 }
