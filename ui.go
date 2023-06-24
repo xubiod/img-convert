@@ -3,9 +3,12 @@ package main
 import (
 	"fmt"
 	imgui "github.com/AllenDang/cimgui-go"
+	"sync"
 )
 
 var (
+	exporterWaitGroup sync.WaitGroup
+
 	backend         imgui.Backend
 	specificBackend imgui.GLFWBackend
 	windowFlags     imgui.GLFWWindowFlags
@@ -32,7 +35,7 @@ var (
 	gifColors       int32 = 256
 	tiffCompression int32 = 0
 
-	progress float32 = 0.0
+	//progress float32 = 0.0
 )
 
 const credit string = `credits n stuff
@@ -195,7 +198,7 @@ func showConfigurationWindow() {
 		}
 	}
 	imgui.EndListBox()
-	imgui.ProgressBar(progress)
+	//imgui.ProgressBar(progress)
 	if imgui.Button("credits") {
 		showCredit = !showCredit
 	}
@@ -251,19 +254,24 @@ func ui() {
 
 		compiledErrors = ""
 		toldErrors = true
-		progress = 0.0
+		//progress = 0.0
 		for i := range p {
-			progress = float32(i) / float32(len(p))
-			err := ConvertTo(p[i], ValidOutputTypes[selectedFileType], QualityInformation{
-				QualityInt:   genericQuality,
-				QualityFloat: float32(qualityInt),
-			}, !skipSameType, overwriteFiles)
-			progress = float32(i+1) / float32(len(p))
+			exporterWaitGroup.Add(1)
+			go func(idx int) {
+				defer exporterWaitGroup.Done()
+				err := ConvertTo(p[idx], ValidOutputTypes[selectedFileType], QualityInformation{
+					QualityInt:   genericQuality,
+					QualityFloat: float32(qualityInt),
+				}, !skipSameType, overwriteFiles)
+				//progress = float32(i+1) / float32(len(p))
 
-			if err != nil {
-				compiledErrors += err.Error() + "\n"
-			}
+				if err != nil {
+					compiledErrors += err.Error() + "\n"
+				}
+			}(i)
 		}
+
+		exporterWaitGroup.Wait()
 
 		if compiledErrors != "" {
 			toldErrors = false
