@@ -41,7 +41,8 @@ made with go 1.20.5
 
 libraries used are from imports
 
------- decoder libraries ------
+------------ decoder libraries ------------
+---------- (allowed file inputs) ----------
 gif         => image/gif
 jpeg/jpg    => image/jpeg
 png         => image/png
@@ -56,7 +57,8 @@ ppm         => github.com/jbuchbinder/gopnm
 
 jfif        => internally (i wrote it!)
 
------- encoder libraries ------
+------------ encoder libraries ------------
+---------- (allowed file output) ----------
 gif         => image/gif
 jpeg/jpg    => image/jpeg
 png         => image/png
@@ -71,7 +73,7 @@ pbm         => github.com/jbuchbinder/gopnm
 pgm         => github.com/jbuchbinder/gopnm
 ppm         => github.com/jbuchbinder/gopnm
 
------- other libraries ------
+------------- other libraries -------------
 imgui       => github.com/AllenDang/cimgui-go`
 
 var showCredit = false
@@ -92,8 +94,12 @@ func uiLoop() {
 	}
 }
 
+var windowSize = imgui.Vec2{X: 800, Y: 800}
+var configWindowSize = imgui.Vec2{X: 700, Y: 700}
+
 func showConfigurationWindow() {
-	imgui.SetNextWindowSizeV(imgui.NewVec2(650, 600), imgui.CondOnce)
+	// imgui.SetNextWindowPosV(imgui.NewVec2(0, 0), imgui.CondOnce, imgui.NewVec2(0, 0))
+	imgui.SetNextWindowSizeV(configWindowSize, imgui.CondOnce)
 	imgui.Begin("config")
 
 	imgui.TextUnformatted("to convert, just drop it on the main window, files will appear in the same directory")
@@ -101,7 +107,7 @@ func showConfigurationWindow() {
 
 	imgui.NewLine()
 
-	imgui.BeginListBox("convert to")
+	imgui.BeginListBoxV("convert to", imgui.Vec2{Y: 200})
 	for i := 0; i < len(ValidOutputTypes); i++ {
 		isSelected := selectedFileType == i
 		if imgui.SelectableBoolPtr(ValidOutputTypes[i], &isSelected) {
@@ -176,7 +182,7 @@ func showConfigurationWindow() {
 		imgui.SetTooltip("changes the amount of allowed colors for gif\n\nthere's only a maximum of 256 available on gif's\npalette table, but it can be less")
 	}
 
-	imgui.BeginListBox("tiff compression type")
+	imgui.BeginListBoxV("tiff compression type", imgui.Vec2{Y: 87})
 	var i int32 = 0
 	for i = 0; i < int32(len(tiffCompressionNames)); i++ {
 		isSelected := tiffCompression == i
@@ -227,7 +233,7 @@ func ui() {
 	backend = imgui.CreateBackend(&specificBackend)
 
 	backend.SetBgColor(imgui.NewVec4(0.45, .55, .6, 1.0))
-	backend.CreateWindow("title", 800, 800, windowFlags)
+	backend.CreateWindow("title", int(windowSize.X), int(windowSize.Y), windowFlags)
 
 	backend.SetDropCallback(func(p []string) {
 		fmt.Printf("drop: %v", p)
