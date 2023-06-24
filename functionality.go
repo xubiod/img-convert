@@ -37,8 +37,8 @@ var ValidOutputTypes = []string{
 
 	"gif",  // std/image
 	"jpeg", // std/image
-	"jpg",  // std/image
-	"png",  // std/image
+	//	"jpg",  // std/image
+	"png", // std/image
 
 	"jfif", // github.com/leotaku/mobi/jfif
 	"webp", // github.com/chai2010/webp
