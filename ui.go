@@ -30,10 +30,11 @@ var (
 	losslessTooltip = "supported by: webp"
 
 	qualityInt     int32 = 100
-	qualityTooltip       = "supported by: jpeg, webp\n\n0%% is worst, 100%% is best"
+	qualityTooltip       = "supported by: jpeg, webp, jfif\n\n0%% is worst, 100%% is best"
 
 	gifColors       int32 = 256
 	tiffCompression int32 = 0
+	tiffPredictor   bool  = false
 
 	//progress float32 = 0.0
 )
@@ -82,6 +83,7 @@ pcx         => github.com/samuel/go-pcx/pcx
 imgui       => github.com/AllenDang/cimgui-go`
 
 var showCredit = false
+var showMini = false
 
 var tiffCompressionNames = []string{
 	"uncompressed",
@@ -92,7 +94,10 @@ var tiffCompressionNames = []string{
 }
 
 func uiLoop() {
-	showMiniWindow()
+	if showMini {
+		showMiniWindow()
+	}
+
 	showConfigurationWindow()
 	if showCredit {
 		showCreditWindow()
@@ -103,8 +108,6 @@ var windowSize = imgui.Vec2{X: 800, Y: 800}
 var configWindowSize = imgui.Vec2{X: 650, Y: 700}
 
 func showConfigurationWindow() {
-	// imgui.SetNextWindowPosV(imgui.NewVec2(0, 0), imgui.CondOnce, imgui.NewVec2(0, 0))
-
 	imgui.SetNextWindowSizeV(configWindowSize, imgui.CondOnce)
 	imgui.Begin("config")
 
@@ -201,9 +204,19 @@ func showConfigurationWindow() {
 		}
 	}
 	imgui.EndListBox()
+
+	imgui.Checkbox("tiff predictor", &tiffPredictor)
+	if imgui.IsItemHovered() {
+		imgui.SetTooltip("determines whether a differencing predictor is used\nit can improve the compression in certain situations")
+	}
+
 	//imgui.ProgressBar(progress)
 	if imgui.Button("credits") {
 		showCredit = !showCredit
+	}
+	imgui.SameLine()
+	if imgui.Button("imgui builtin") {
+		showMini = !showMini
 	}
 
 	imgui.End()
@@ -216,10 +229,21 @@ func showCreditWindow() {
 	imgui.End()
 }
 
+var showMetrics = false
+var showUserGuide = false
+var showDebugLog = false
+var showStackTool = false
+var showStyleEdit = false
+
 func showMiniWindow() {
-	imgui.Begin("deboog")
-	imgui.Checkbox("imgui about", &showAbout)
-	imgui.Checkbox("imgui demo", &showDemo)
+	imgui.Begin("imgui builtin")
+	imgui.Checkbox("about", &showAbout)
+	imgui.Checkbox("demo", &showDemo)
+	imgui.Checkbox("debuglog", &showDebugLog)
+	imgui.Checkbox("metrics", &showMetrics)
+	imgui.Checkbox("stacktool", &showStackTool)
+	imgui.Checkbox("styleedit", &showStyleEdit)
+	imgui.Checkbox("userguide", &showUserGuide)
 
 	if showAbout {
 		imgui.ShowAboutWindow()
@@ -227,6 +251,26 @@ func showMiniWindow() {
 
 	if showDemo {
 		imgui.ShowDemoWindow()
+	}
+
+	if showMetrics {
+		imgui.ShowMetricsWindow()
+	}
+
+	if showUserGuide {
+		imgui.ShowUserGuide()
+	}
+
+	if showDebugLog {
+		imgui.ShowDebugLogWindow()
+	}
+
+	if showStackTool {
+		imgui.ShowStackToolWindow()
+	}
+
+	if showStyleEdit {
+		imgui.ShowStyleEditor()
 	}
 
 	imgui.End()
@@ -239,7 +283,7 @@ func ui() {
 	backend = imgui.CreateBackend(&specificBackend)
 
 	backend.SetBgColor(imgui.NewVec4(0.45, .55, .6, 1.0))
-	backend.CreateWindow("title", int(windowSize.X), int(windowSize.Y), windowFlags)
+	backend.CreateWindow("img-convert - dropzone", int(windowSize.X), int(windowSize.Y), windowFlags)
 
 	backend.SetDropCallback(func(p []string) {
 		fmt.Printf("drop: %v", p)
@@ -263,8 +307,9 @@ func ui() {
 			go func(idx int) {
 				defer exporterWaitGroup.Done()
 				err := ConvertTo(p[idx], ValidOutputTypes[selectedFileType], QualityInformation{
-					QualityInt:   genericQuality,
-					QualityFloat: float32(qualityInt),
+					QualityInt:    genericQuality,
+					QualityFloat:  float32(qualityInt),
+					TiffPredictor: tiffPredictor,
 				}, !skipSameType, overwriteFiles)
 				//progress = float32(i+1) / float32(len(p))
 
@@ -282,6 +327,7 @@ func ui() {
 	})
 
 	imgui.StyleColorsClassic()
+	backend.SetTargetFPS(45)
 
 	backend.Run(uiLoop)
 }

@@ -59,10 +59,11 @@ var ValidOutputTypes = []string{
 }
 
 type QualityInformation struct {
-	Lossless     bool
-	QualityInt   int
-	QualityFloat float32
-	WebpExact    bool
+	Lossless      bool
+	QualityInt    int
+	QualityFloat  float32
+	WebpExact     bool
+	TiffPredictor bool
 }
 
 func ConvertTo(filename string, outputFileType string, quality QualityInformation, overrideSameTypeSkip bool, overwriteFiles bool) error {
@@ -146,6 +147,7 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	case "tiff":
 		err = tiff.Encode(r, decodedImage, &tiff.Options{
 			Compression: tiff.CompressionType(quality.QualityInt),
+			Predictor:   quality.TiffPredictor,
 		})
 	case "gif":
 		err = gif.Encode(r, decodedImage, &gif.Options{
