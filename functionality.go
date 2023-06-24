@@ -15,6 +15,8 @@ import (
 
 	webpEncoder "github.com/chai2010/webp"
 	"github.com/leotaku/mobi/jfif"
+
+	self_jfif "img-convert/dedicated-decoder/jfif"
 )
 
 // Valid decoders
@@ -28,6 +30,8 @@ var ValidInputTypes = []string{
 	"jpeg", // std/image
 	"jpg",  // std/image
 	"png",  // std/image
+
+	"jfif", // self
 }
 
 // Valid encoders
@@ -103,6 +107,9 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	case ".png":
 		decodedImage, err = png.Decode(f)
+
+	case ".jfif":
+		decodedImage, err = self_jfif.Decode(f)
 	}
 
 	if err != nil {
