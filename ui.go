@@ -100,10 +100,11 @@ func uiLoop() {
 }
 
 var windowSize = imgui.Vec2{X: 800, Y: 800}
-var configWindowSize = imgui.Vec2{X: 700, Y: 700}
+var configWindowSize = imgui.Vec2{X: 650, Y: 700}
 
 func showConfigurationWindow() {
 	// imgui.SetNextWindowPosV(imgui.NewVec2(0, 0), imgui.CondOnce, imgui.NewVec2(0, 0))
+
 	imgui.SetNextWindowSizeV(configWindowSize, imgui.CondOnce)
 	imgui.Begin("config")
 
@@ -279,6 +280,8 @@ func ui() {
 			toldErrors = false
 		}
 	})
+
+	imgui.StyleColorsClassic()
 
 	backend.Run(uiLoop)
 }
