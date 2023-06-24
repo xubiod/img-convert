@@ -19,7 +19,8 @@ var toldErrors = false
 
 var showAbout bool
 var showDemo bool
-var floating = false
+
+// var floating = false
 var selectedFileType = 0
 
 var lossless = true
