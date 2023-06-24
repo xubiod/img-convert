@@ -12,4 +12,7 @@ require (
 	github.com/chai2010/webp v1.1.1
 )
 
-require github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0 // indirect
+require (
+	github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0 // indirect
+	github.com/samuel/go-pcx v0.0.0-20210515040514-6a5ce4d132f7 // indirect
+)

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	pnm "github.com/jbuchbinder/gopnm"
+	"github.com/samuel/go-pcx/pcx"
 	"golang.org/x/image/bmp"
 	"golang.org/x/image/tiff"
 	"golang.org/x/image/vp8l"
@@ -35,6 +36,7 @@ var ValidInputTypes = []string{
 	"pbm", // github.com/jbuchbinder/gopnm
 	"pgm", // github.com/jbuchbinder/gopnm
 	"ppm", // github.com/jbuchbinder/gopnm
+	"pcx", // github.com/samuel/go-pcx/pcx
 
 	"jfif", // self
 }
@@ -53,6 +55,7 @@ var ValidOutputTypes = []string{
 	"pbm",  // github.com/jbuchbinder/gopnm
 	"pgm",  // github.com/jbuchbinder/gopnm
 	"ppm",  // github.com/jbuchbinder/gopnm
+	"pcx",  // github.com/samuel/go-pcx/pcx
 }
 
 type QualityInformation struct {
@@ -120,6 +123,9 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	case ".pbm", ".pgm", ".ppm":
 		decodedImage, err = pnm.Decode(f)
+
+	case ".pcx":
+		decodedImage, err = pcx.Decode(f)
 	}
 
 	if err != nil {
@@ -167,6 +173,8 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		err = pnm.Encode(r, decodedImage, pnm.PGM)
 	case "ppm":
 		err = pnm.Encode(r, decodedImage, pnm.PPM)
+	case "pcx":
+		err = pcx.Encode(r, decodedImage)
 	}
 
 	if err != nil {

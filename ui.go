@@ -57,6 +57,7 @@ webp        => github.com/chai2010/webp
 pbm         => github.com/jbuchbinder/gopnm
 pgm         => github.com/jbuchbinder/gopnm
 ppm         => github.com/jbuchbinder/gopnm
+pcx         => github.com/samuel/go-pcx/pcx
 
 jfif        => internally (i wrote it!)
 
@@ -75,6 +76,7 @@ jfif        => github.com/leotaku/mobi/jfif
 pbm         => github.com/jbuchbinder/gopnm
 pgm         => github.com/jbuchbinder/gopnm
 ppm         => github.com/jbuchbinder/gopnm
+pcx         => github.com/samuel/go-pcx/pcx
 
 ------------- other libraries -------------
 imgui       => github.com/AllenDang/cimgui-go`
