@@ -5,34 +5,35 @@ import (
 	imgui "github.com/AllenDang/cimgui-go"
 )
 
-var backend imgui.Backend
-var specificBackend imgui.GLFWBackend
-var windowFlags imgui.GLFWWindowFlags
+var (
+	backend         imgui.Backend
+	specificBackend imgui.GLFWBackend
+	windowFlags     imgui.GLFWWindowFlags
 
-var skipSameType = true
-var overwriteFiles = true
+	skipSameType   = true
+	overwriteFiles = true
 
-var errorPopupName = "Whoops!"
+	errorPopupName = "Whoops!"
 
-var compiledErrors = ""
-var toldErrors = false
+	compiledErrors = ""
+	toldErrors     = false
 
-var showAbout bool
-var showDemo bool
+	showAbout bool
+	showDemo  bool
 
-// var floating = false
-var selectedFileType = 0
+	selectedFileType = 0
 
-var lossless = true
-var losslessTooltip = "supported by: webp"
+	lossless        = true
+	losslessTooltip = "supported by: webp"
 
-var qualityInt int32 = 100
-var qualityTooltip = "supported by: jpeg, webp\n\n0%% is worst, 100%% is best"
+	qualityInt     int32 = 100
+	qualityTooltip       = "supported by: jpeg, webp\n\n0%% is worst, 100%% is best"
 
-var gifColors int32 = 256
-var tiffCompression int32 = 0
+	gifColors       int32 = 256
+	tiffCompression int32 = 0
 
-var progress float32 = 0.0
+	progress float32 = 0.0
+)
 
 const credit string = `credits n stuff
 overall program by xubiod 2023
