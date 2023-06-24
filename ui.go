@@ -39,7 +39,7 @@ made with go 1.20.5
 
 libraries used are from imports
 
------- encoder libraries ------
+------ decoder libraries ------
 bmp         => golang.org/x/image/bmp
 tiff        => golang.org/x/image/tiff
 gif         => image/gif
@@ -47,7 +47,7 @@ jpeg/jpg    => image/jpeg
 png         => image/png
 webp        => github.com/chai2010/webp
 
------- decoder libraries ------
+------ encoder libraries ------
 bmp         => golang.org/x/image/bmp
 tiff        => golang.org/x/image/tiff
 vp8l        => golang.org/x/image/vp8l
