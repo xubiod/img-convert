@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/blezek/tga"
 	pnm "github.com/jbuchbinder/gopnm"
+	"github.com/mokiat/goexr/exr"
+	"github.com/nielsAD/gowarcraft3/file/blp"
 	"github.com/samuel/go-pcx/pcx"
 	"golang.org/x/image/bmp"
 	"golang.org/x/image/tiff"
@@ -12,9 +15,11 @@ import (
 	"image/gif"
 	"image/jpeg"
 	"image/png"
+	"lelux.net/x/image/qoi"
 	"os"
 	"path/filepath"
 
+	megaSD "github.com/bodgit/megasd/image"
 	webpEncoder "github.com/chai2010/webp"
 	"github.com/leotaku/mobi/jfif"
 
@@ -33,10 +38,15 @@ var ValidInputTypes = []string{
 	"vp8l", // golang.org/x/image
 	"webp", // golang.org/x/image
 
-	"pbm", // github.com/jbuchbinder/gopnm
-	"pgm", // github.com/jbuchbinder/gopnm
-	"ppm", // github.com/jbuchbinder/gopnm
-	"pcx", // github.com/samuel/go-pcx/pcx
+	"pbm",    // github.com/jbuchbinder/gopnm
+	"pgm",    // github.com/jbuchbinder/gopnm
+	"ppm",    // github.com/jbuchbinder/gopnm
+	"pcx",    // github.com/samuel/go-pcx/pcx
+	"blp",    // github.com/nielsAD/gowarcraft3/file/blp
+	"exr",    // github.com/mokiat/goexr/exr
+	"megasd", // github.com/bodgit/megasd/image
+	"qoi",    // lelux.net/x/image/qoi
+	"tga",    // github.com/blezek/tga
 
 	"jfif", // self
 }
@@ -50,12 +60,15 @@ var ValidOutputTypes = []string{
 	"bmp",  // golang.org/x/image
 	"tiff", // golang.org/x/image
 
-	"jfif", // github.com/leotaku/mobi/jfif
-	"webp", // github.com/chai2010/webp
-	"pbm",  // github.com/jbuchbinder/gopnm
-	"pgm",  // github.com/jbuchbinder/gopnm
-	"ppm",  // github.com/jbuchbinder/gopnm
-	"pcx",  // github.com/samuel/go-pcx/pcx
+	"jfif",   // github.com/leotaku/mobi/jfif
+	"webp",   // github.com/chai2010/webp
+	"pbm",    // github.com/jbuchbinder/gopnm
+	"pgm",    // github.com/jbuchbinder/gopnm
+	"ppm",    // github.com/jbuchbinder/gopnm
+	"pcx",    // github.com/samuel/go-pcx/pcx
+	"megasd", // github.com/bodgit/megasd/image
+	"qoi",    // lelux.net/x/image/qoi
+	"tga",    // github.com/blezek/tga
 }
 
 type QualityInformation struct {
@@ -127,6 +140,21 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	case ".pcx":
 		decodedImage, err = pcx.Decode(f)
+
+	case ".blp":
+		decodedImage, err = blp.Decode(f)
+
+	case ".exr":
+		decodedImage, err = exr.Decode(f)
+
+	case ".megasd":
+		decodedImage, err = megaSD.Decode(f)
+
+	case ".qoi":
+		decodedImage, err = qoi.Decode(f)
+
+	case ".tga":
+		decodedImage, err = tga.Decode(f)
 	}
 
 	if err != nil {
@@ -177,6 +205,12 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		err = pnm.Encode(r, decodedImage, pnm.PPM)
 	case "pcx":
 		err = pcx.Encode(r, decodedImage)
+	case "megasd":
+		err = megaSD.Encode(r, decodedImage)
+	case "qoi":
+		err = qoi.Encode(r, decodedImage)
+	case "tga":
+		err = tga.Encode(r, decodedImage)
 	}
 
 	if err != nil {

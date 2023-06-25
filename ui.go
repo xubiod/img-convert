@@ -59,6 +59,11 @@ pbm         => github.com/jbuchbinder/gopnm
 pgm         => github.com/jbuchbinder/gopnm
 ppm         => github.com/jbuchbinder/gopnm
 pcx         => github.com/samuel/go-pcx/pcx
+blp         => github.com/nielsAD/gowarcraft3/file/blp
+exr         => github.com/mokiat/goexr/exr
+megasd      => github.com/bodgit/megasd/image
+qoi         => lelux.net/x/image/qoi
+tga         => github.com/blezek/tga
 
 jfif        => internally (i wrote it!)
 
@@ -78,6 +83,9 @@ pbm         => github.com/jbuchbinder/gopnm
 pgm         => github.com/jbuchbinder/gopnm
 ppm         => github.com/jbuchbinder/gopnm
 pcx         => github.com/samuel/go-pcx/pcx
+megasd      => github.com/bodgit/megasd/image
+qoi         => lelux.net/x/image/qoi
+tga         => github.com/blezek/tga
 
 ------------- other libraries -------------
 imgui       => github.com/AllenDang/cimgui-go`
@@ -112,7 +120,7 @@ func showConfigurationWindow() {
 	imgui.Begin("config")
 
 	imgui.TextUnformatted("to convert, just drop it on the main window, files will appear in the same directory")
-	imgui.TextUnformatted(fmt.Sprintf("currently supports decoding: %v", ValidInputTypes))
+	imgui.TextWrapped(fmt.Sprintf("currently supports decoding: %v", ValidInputTypes))
 
 	imgui.NewLine()
 
