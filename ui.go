@@ -21,20 +21,25 @@ var (
 	compiledErrors = ""
 	toldErrors     = false
 
-	showAbout bool
-	showDemo  bool
+	showAbout  bool
+	showDemo   bool
+	showCredit bool
+	showMini   bool
 
 	selectedFileType = 0
 
 	lossless        = true
 	losslessTooltip = "supported by: webp"
 
+	exact        = true
+	exactTooltip = "preserves RGB values in transparent areas\nif off, rgba(255, 127, 0, 0.0) would (probably) become rgba(0, 0, 0, 0.0)"
+
 	qualityInt     int32 = 100
 	qualityTooltip       = "supported by: jpeg, webp, jfif\n\n0%% is worst, 100%% is best"
 
 	gifColors       int32 = 256
 	tiffCompression int32 = 0
-	tiffPredictor   bool  = false
+	tiffPredictor         = false
 
 	//progress float32 = 0.0
 )
@@ -83,8 +88,40 @@ psd         => github.com/oov/psd
 ------------- other libraries -------------
 imgui       => github.com/AllenDang/cimgui-go`
 
-var showCredit = false
-var showMini = false
+var typeExplainer = map[string]string{
+	"png": "as specified by: https://www.w3.org/TR/PNG/",
+	"gif": "as specified by: https://www.w3.org/Graphics/GIF/spec-gif89a.txt\n\n" +
+		"quantizes with go's palette.Plan9 palette, and draws with go's default\n" +
+		"draw.FloydSteinburg. rest of the options are given to you to modify",
+	"jpeg": "as specified by: https://www.w3.org/Graphics/JPEG/itu-t81.pdf\n\n" +
+		"all available options are given to you to modify",
+
+	"bmp": "as specified by: https://www.digicamsoft.com/bmp/bmp.html",
+	"tiff": "as specified by: https://partners.adobe.com/public/developer/en/tiff/TIFF6.pdf\n\n" +
+		"all available options are given to you to modify",
+
+	"jfif": "package doesn't list a spec\n\n" +
+		"the jfif header is baked into the package used, and can't be modified\n" +
+		"all available options are given to you to modify (compat. w/ jpeg)",
+	"webp": "as specified by: https://developers.google.com/speed/webp/docs/riff_container\n\n" +
+		"all available options are given to you to modify",
+	"pbm": "package doesn't list a spec\n\n" +
+		"PBM makes 1-bit bitmaps (only black at 0 and white at 255)",
+	"pgm": "package doesn't list a spec\n\n" +
+		"PGM makes grayscale bitmaps",
+	"ppm": "package doesn't list a spec\n\n" +
+		"PPM makes color bitmaps",
+	"pcx": "as specified by: https://web.archive.org/web/20030111010058/http://www.nist.fss.ru/hr/doc/spec/pcx.htm",
+	"megasd": "package defines its own spec:\n\n" +
+		"\"The format is defined as 64 by 40 pixels exactly which is split into forty 8 by 8 tiles.\n" +
+		"Up to three 16 color palettes can be defined and each tile can use only one of these palettes.\n" +
+		"The first color in each palette is reserved for transparency.\"",
+	"qoi": "as specified by: https://qoiformat.org/qoi-specification.pdf",
+	"tga": "package doesn't list a spec, but passes TGA 2.0 conformance\n" +
+		"which is available at https://googlesites.inequation.org/tgautilities",
+	"xpm": "package says \"X PixMap (XPM3)\"",
+	"xcf": "package says \"GIMP's XCF format\"",
+}
 
 var tiffCompressionNames = []string{
 	"uncompressed",
@@ -124,6 +161,10 @@ func showConfigurationWindow() {
 			selectedFileType = i
 		}
 
+		if _, ok := typeExplainer[ValidOutputTypes[i]]; ok && imgui.IsItemHovered() {
+			imgui.SetTooltip(typeExplainer[ValidOutputTypes[i]])
+		}
+
 		if isSelected {
 			imgui.SetItemDefaultFocus()
 		}
@@ -137,7 +178,8 @@ func showConfigurationWindow() {
 		imgui.SetTooltip("if checked, the converter will skip loading and converting files\n" +
 			"that are the same type as the output, i.e. skipping png => png\n\n" +
 			"this can be unchecked if the behaviour is desired, but sizes and quality might change,\n" +
-			"but the input files will not be overwritten due to how files are named")
+			"(as the raw pixel data is getting unpacked and repacked) but the input files will not\n" +
+			"be overwritten due to how files are named")
 	}
 
 	imgui.SameLine()
@@ -209,6 +251,13 @@ func showConfigurationWindow() {
 	imgui.Checkbox("tiff predictor", &tiffPredictor)
 	if imgui.IsItemHovered() {
 		imgui.SetTooltip("determines whether a differencing predictor is used\nit can improve the compression in certain situations")
+	}
+
+	imgui.SameLine()
+
+	imgui.Checkbox("webp exact", &exact)
+	if imgui.IsItemHovered() {
+		imgui.SetTooltip(exactTooltip)
 	}
 
 	//imgui.ProgressBar(progress)
@@ -311,6 +360,7 @@ func ui() {
 					QualityInt:    genericQuality,
 					QualityFloat:  float32(qualityInt),
 					TiffPredictor: tiffPredictor,
+					WebpExact:     exact,
 				}, !skipSameType, overwriteFiles)
 				//progress = float32(i+1) / float32(len(p))
 
