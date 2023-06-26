@@ -215,50 +215,62 @@ func showConfigurationWindow() {
 	}
 
 	imgui.NewLine()
-	imgui.TextUnformatted("generic options (for those that support it):")
 
-	imgui.Checkbox("lossless", &lossless)
-	if imgui.IsItemHovered() {
-		imgui.SetTooltip(losslessTooltip)
-	}
+	if imgui.CollapsingHeaderTreeNodeFlags("export options (defaults to highest quality per method)") {
+		imgui.TextUnformatted("generic options (for those that support it):")
 
-	imgui.SliderInt("quality", &qualityInt, 0, 100)
-	if imgui.IsItemHovered() {
-		imgui.SetTooltip(qualityTooltip)
+		imgui.Checkbox("lossless", &lossless)
+		if imgui.IsItemHovered() {
+			imgui.SetTooltip(losslessTooltip)
+		}
+
+		imgui.SliderInt("quality", &qualityInt, 0, 100)
+		if imgui.IsItemHovered() {
+			imgui.SetTooltip(qualityTooltip)
+		}
+
+		imgui.NewLine()
+		imgui.TextUnformatted("specific options:")
+
+		switch ValidOutputTypes[selectedFileType] {
+		case "gif":
+			imgui.SliderInt("gif colors", &gifColors, 1, 256)
+			if imgui.IsItemHovered() {
+				imgui.SetTooltip("changes the amount of allowed colors for gif\n\nthere's only a maximum of 256 available on gif's\npalette table, but it can be less")
+			}
+
+		case "tiff":
+			imgui.BeginListBoxV("tiff compression type", imgui.Vec2{Y: 87})
+			var i int32 = 0
+			for i = 0; i < int32(len(tiffCompressionNames)); i++ {
+				isSelected := tiffCompression == i
+				if imgui.SelectableBoolPtr(tiffCompressionNames[i], &isSelected) {
+					tiffCompression = i
+				}
+
+				if isSelected {
+					imgui.SetItemDefaultFocus()
+				}
+			}
+			imgui.EndListBox()
+
+			imgui.Checkbox("tiff predictor", &tiffPredictor)
+			if imgui.IsItemHovered() {
+				imgui.SetTooltip("determines whether a differencing predictor is used\nit can improve the compression in certain situations")
+			}
+
+		case "webp":
+			imgui.Checkbox("webp exact", &exact)
+			if imgui.IsItemHovered() {
+				imgui.SetTooltip(exactTooltip)
+			}
+
+		default:
+			imgui.TextUnformatted(ValidOutputTypes[selectedFileType] + " doesn't have specific options")
+		}
 	}
 
 	imgui.NewLine()
-	imgui.TextUnformatted("specific options:")
-	imgui.SliderInt("gif colors", &gifColors, 1, 256)
-	if imgui.IsItemHovered() {
-		imgui.SetTooltip("changes the amount of allowed colors for gif\n\nthere's only a maximum of 256 available on gif's\npalette table, but it can be less")
-	}
-
-	imgui.BeginListBoxV("tiff compression type", imgui.Vec2{Y: 87})
-	var i int32 = 0
-	for i = 0; i < int32(len(tiffCompressionNames)); i++ {
-		isSelected := tiffCompression == i
-		if imgui.SelectableBoolPtr(tiffCompressionNames[i], &isSelected) {
-			tiffCompression = i
-		}
-
-		if isSelected {
-			imgui.SetItemDefaultFocus()
-		}
-	}
-	imgui.EndListBox()
-
-	imgui.Checkbox("tiff predictor", &tiffPredictor)
-	if imgui.IsItemHovered() {
-		imgui.SetTooltip("determines whether a differencing predictor is used\nit can improve the compression in certain situations")
-	}
-
-	imgui.SameLine()
-
-	imgui.Checkbox("webp exact", &exact)
-	if imgui.IsItemHovered() {
-		imgui.SetTooltip(exactTooltip)
-	}
 
 	//imgui.ProgressBar(progress)
 	if imgui.Button("credits") {
@@ -274,7 +286,7 @@ func showConfigurationWindow() {
 
 func showCreditWindow() {
 	imgui.SetNextWindowSizeV(imgui.NewVec2(500, 400), imgui.CondOnce)
-	imgui.Begin("credit")
+	imgui.BeginV("credit", &showCredit, imgui.WindowFlagsNone)
 	imgui.TextWrapped(credit)
 	imgui.End()
 }
@@ -286,7 +298,7 @@ var showStackTool = false
 var showStyleEdit = false
 
 func showMiniWindow() {
-	imgui.Begin("imgui builtin")
+	imgui.BeginV("imgui builtin", &showMini, imgui.WindowFlagsNone)
 	imgui.Checkbox("about", &showAbout)
 	imgui.Checkbox("demo", &showDemo)
 	imgui.Checkbox("debuglog", &showDebugLog)
@@ -296,31 +308,31 @@ func showMiniWindow() {
 	imgui.Checkbox("userguide", &showUserGuide)
 
 	if showAbout {
-		imgui.ShowAboutWindow()
+		imgui.ShowAboutWindowV(&showAbout)
 	}
 
 	if showDemo {
-		imgui.ShowDemoWindow()
-	}
-
-	if showMetrics {
-		imgui.ShowMetricsWindow()
-	}
-
-	if showUserGuide {
-		imgui.ShowUserGuide()
+		imgui.ShowDemoWindowV(&showDemo)
 	}
 
 	if showDebugLog {
-		imgui.ShowDebugLogWindow()
+		imgui.ShowDebugLogWindowV(&showDebugLog)
+	}
+
+	if showMetrics {
+		imgui.ShowMetricsWindowV(&showMetrics)
 	}
 
 	if showStackTool {
-		imgui.ShowStackToolWindow()
+		imgui.ShowStackToolWindowV(&showStackTool)
 	}
 
 	if showStyleEdit {
 		imgui.ShowStyleEditor()
+	}
+
+	if showUserGuide {
+		imgui.ShowUserGuide()
 	}
 
 	imgui.End()
