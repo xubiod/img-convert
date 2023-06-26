@@ -27,10 +27,12 @@ import (
 	webpEncoder "github.com/chai2010/webp"
 	"github.com/leotaku/mobi/jfif"
 
-	self_jfif "img-convert/dedicated-decoder/jfif"
+	selfJfif "img-convert/dedicated-decoder/jfif"
 )
 
-// Valid decoders
+// ValidInputTypes
+//
+// A list of valid decoders by file type.
 var ValidInputTypes = []string{
 	"png",  // std/image
 	"gif",  // std/image
@@ -57,7 +59,9 @@ var ValidInputTypes = []string{
 	"jfif", // self
 }
 
-// Valid encoders
+// ValidOutputTypes
+//
+// A list of valid encoders by file type.
 var ValidOutputTypes = []string{
 	"png",  // std/image
 	"gif",  // std/image
@@ -141,7 +145,7 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		decodedImage, err = png.Decode(f)
 
 	case ".jfif":
-		decodedImage, err = self_jfif.Decode(f)
+		decodedImage, err = selfJfif.Decode(f)
 
 	case ".pbm", ".pgm", ".ppm":
 		decodedImage, err = pnm.Decode(f)
