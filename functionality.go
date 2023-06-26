@@ -101,7 +101,7 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	f, err := os.Open(filename)
 	if err != nil {
-		f.Close()
+		_ = f.Close()
 		return fmt.Errorf("%s couldn't be opened, skipping (%s)", filename, err.Error())
 	}
 
@@ -113,7 +113,7 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	}
 
 	if !inputValid {
-		f.Close()
+		_ = f.Close()
 		return fmt.Errorf("%s is not a valid input, skipping", filename)
 	}
 
@@ -173,14 +173,14 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	}
 
 	if err != nil {
-		f.Close()
+		_ = f.Close()
 		return fmt.Errorf("%s couldn't be decoded (%s), skipping", filename, err.Error())
 	}
 
 	r, err := os.Create(filename + "." + outputFileType)
 	if err != nil {
-		f.Close()
-		r.Close()
+		_ = f.Close()
+		_ = r.Close()
 		return fmt.Errorf("%s.%s couldn't be created, skipping (%s)", filename, outputFileType, err.Error())
 	}
 
@@ -233,13 +233,13 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	}
 
 	if err != nil {
-		f.Close()
-		r.Close()
+		_ = f.Close()
+		_ = r.Close()
 		return fmt.Errorf("%s.%s couldn't be encoded (%s)", filename, outputFileType, err.Error())
 	}
 
-	f.Close()
-	r.Close()
+	_ = f.Close()
+	_ = r.Close()
 
 	return nil
 }
