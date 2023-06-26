@@ -12,6 +12,7 @@ var (
 	backend         imgui.Backend
 	specificBackend imgui.GLFWBackend
 	windowFlags     imgui.GLFWWindowFlags
+	fps             uint = 45
 
 	skipSameType   = true
 	overwriteFiles = true
@@ -390,7 +391,7 @@ func ui() {
 	})
 
 	imgui.StyleColorsClassic()
-	backend.SetTargetFPS(45)
+	backend.SetTargetFPS(fps)
 
 	backend.Run(uiLoop)
 }
