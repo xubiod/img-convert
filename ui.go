@@ -45,8 +45,8 @@ made with go 1.20.5
 
 libraries used are from imports
 
------------- decoder libraries ------------
----------- (allowed file inputs) ----------
+------- encoder + decoder libraries -------
+----- (does both in the same library) -----
 gif         => image/gif
 jpeg/jpg    => image/jpeg
 png         => image/png
@@ -54,38 +54,31 @@ png         => image/png
 bmp         => golang.org/x/image/bmp
 tiff        => golang.org/x/image/tiff
 
-webp        => github.com/chai2010/webp
 pbm         => github.com/jbuchbinder/gopnm
 pgm         => github.com/jbuchbinder/gopnm
 ppm         => github.com/jbuchbinder/gopnm
 pcx         => github.com/samuel/go-pcx/pcx
-blp         => github.com/nielsAD/gowarcraft3/file/blp
-exr         => github.com/mokiat/goexr/exr
 megasd      => github.com/bodgit/megasd/image
 qoi         => lelux.net/x/image/qoi
 tga         => github.com/blezek/tga
-
-jfif        => internally (i wrote it!)
+xcf         => vimagination.zapto.org/limage/xcf
 
 ------------ encoder libraries ------------
 ---------- (allowed file output) ----------
-gif         => image/gif
-jpeg/jpg    => image/jpeg
-png         => image/png
+webp        => github.com/chai2010/webp
+blp         => github.com/nielsAD/gowarcraft3/file/blp
+exr         => github.com/mokiat/goexr/exr
+xpm         => github.com/xyproto/xpm
 
-bmp         => golang.org/x/image/bmp
-tiff        => golang.org/x/image/tiff
+jfif        => internally (i wrote it!)
+
+------------ decoder libraries ------------
+---------- (allowed file inputs) ----------
 vp8l        => golang.org/x/image/vp8l
 webp        => golang.org/x/image/webp
 
 jfif        => github.com/leotaku/mobi/jfif
-pbm         => github.com/jbuchbinder/gopnm
-pgm         => github.com/jbuchbinder/gopnm
-ppm         => github.com/jbuchbinder/gopnm
-pcx         => github.com/samuel/go-pcx/pcx
-megasd      => github.com/bodgit/megasd/image
-qoi         => lelux.net/x/image/qoi
-tga         => github.com/blezek/tga
+psd         => github.com/oov/psd
 
 ------------- other libraries -------------
 imgui       => github.com/AllenDang/cimgui-go`

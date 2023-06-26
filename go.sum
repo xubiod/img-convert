@@ -30,6 +30,8 @@ github.com/golang/protobuf v1.3.5/go.mod h1:6O5/vntMXwX2lRkT1hjjk0nAC1IDOTvTlVgj
 github.com/google/go-cmp v0.4.0/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/gofuzz v1.0.0/go.mod h1:dBl0BpW6vV/+mYPU4Po3pmUjxk6FQPldtuIdl/M65Eg=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/gopherjs/gopherjs v1.17.2 h1:fQnZVsXk8uxXIStYb0N4bGk7jeyTalG/wsZjQ25dO0g=
+github.com/gopherjs/gopherjs v1.17.2/go.mod h1:pRRIvn/QzFLrKfvEz3qUuEhtE/zLCWfreZ6J5gM2i+k=
 github.com/gorilla/websocket v1.4.1/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
 github.com/graphql-go/graphql v0.8.0/go.mod h1:nKiHzRM0qopJEwCITUuIsxk9PlVlwIiiI8pnJEhordQ=
 github.com/imretro/go v1.0.4 h1:nLA+jScY+zxHM/eaVjmFcM+bg+tbNWhJbnk3ib5D3dg=
@@ -42,6 +44,8 @@ github.com/klauspost/compress v1.15.15/go.mod h1:ZcK2JAFqKOpnBlxcLsJzYfrS9X1akm9
 github.com/leodido/go-urn v1.2.0/go.mod h1:+8+nEpDfqqsY+g338gtMEUOtuK+4dEMhiQEgxpxOKII=
 github.com/leotaku/mobi v0.0.0-20230426193406-3c3105acd3e2 h1:n9dcx9aDpDJHFns7w9H487rkEzVygjCTRyJxvUpx4H4=
 github.com/leotaku/mobi v0.0.0-20230426193406-3c3105acd3e2/go.mod h1:TzFZaVbA6vORK/tM81fExl35wboXdUkwHGVUmZf2ljQ=
+github.com/lucasb-eyer/go-colorful v1.2.0 h1:1nnpGOrhyZZuNyfu1QjKiUICQ74+3FNCN69Aj6K7nkY=
+github.com/lucasb-eyer/go-colorful v1.2.0/go.mod h1:R4dSotOR9KMtayYi1e77YzuveK+i7ruzyGqttikkLy0=
 github.com/mattn/go-isatty v0.0.12/go.mod h1:cbi8OIDigv2wuxKPP5vlRcQ1OAZbq2CE4Kysco4FUpU=
 github.com/mattn/go-sqlite3 v1.13.0/go.mod h1:FPy6KqzDD04eiIsT53CuJW3U88zkxoIYsOqkbpncsNc=
 github.com/mjibson/go-dsp v0.0.0-20180508042940-11479a337f12/go.mod h1:i/KKcxEWEO8Yyl11DYafRPKOPVYTrhxiTRigjtEEXZU=
@@ -52,6 +56,9 @@ github.com/mokiat/goexr v0.1.0/go.mod h1:KhERYaXCcY2ZEaTg1/LyzJ7pxdj/q3V1TxgViG8
 github.com/nielsAD/gowarcraft3 v1.7.1 h1:t61xYLTBihPKp40WgOEcP1TjMF4vYcV9ZJVXDuqqlPA=
 github.com/nielsAD/gowarcraft3 v1.7.1/go.mod h1:i0qPDjSe4Z0uKe0u1OMrfQrZSA0V/aKqhBFxXVMdixE=
 github.com/nyaruka/phonenumbers v1.1.5/go.mod h1:yShPJHDSH3aTKzCbXyVxNpbl2kA+F+Ne5Pun/MvFRos=
+github.com/oov/psd v0.0.0-20220121172623-5db5eafcecbb h1:JF9kOhBBk4WPF7luXFu5yR+WgaFm9L/KiHJHhU9vDwA=
+github.com/oov/psd v0.0.0-20220121172623-5db5eafcecbb/go.mod h1:GHI1bnmAcbp96z6LNfBJvtrjxhaXGkbsk967utPlvL8=
+github.com/peterhellberg/gfx v0.0.0-20191011152831-b91a0de61948/go.mod h1:itlt/V2ABb7sDu42VXQHXmQ4KOdrEbFZDVIaHsRcwak=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/russross/blackfriday/v2 v2.0.1/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/samuel/go-pcx v0.0.0-20210515040514-6a5ce4d132f7 h1:WhAiClm3vGzSl2EWdFsCFBEu2jEhHGa8qGsz4iIEpRc=
@@ -76,6 +83,11 @@ github.com/vmihailenco/msgpack/v5 v5.3.5/go.mod h1:7xyJ9e+0+9SaZT0Wt1RGleJXzli6Q
 github.com/vmihailenco/tagparser/v2 v2.0.0/go.mod h1:Wri+At7QHww0WTrCBeu4J6bNtoV6mEfg5OIWRZA9qds=
 github.com/x448/float16 v0.8.4 h1:qLwI1I70+NjRFUR3zs1JPUCgaCXSh3SW62uAKT1mSBM=
 github.com/x448/float16 v0.8.4/go.mod h1:14CWIYCyZA/cWjXOioeEpHeN/83MdbZDRQHoFcYsOfg=
+github.com/xyproto/burnpal v0.0.0-20191014130824-80030bc13096/go.mod h1:j3S/tDDOEkIChz0sWDqO3zXOgIjz/6nhuc+JrmZNLnA=
+github.com/xyproto/palgen v1.2.0 h1:pejSeMP6VKpoa8/yGjwjP1HbWtY1ErYpOSSiLBiPhWg=
+github.com/xyproto/palgen v1.2.0/go.mod h1:s2fi72RJ3zv3GMbHP1eC+9CJBf8BNo7lpakWdOjd4U0=
+github.com/xyproto/xpm v1.3.0 h1:x2PfSz7eCBqIt9sw8X0G4tZyp4My7/0XErd2NMT9jKo=
+github.com/xyproto/xpm v1.3.0/go.mod h1:3WnRP6D+0X0IRuHIds0TWfyYlnxdQk4anoLROtw0d2g=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/crypto v0.0.0-20210921155107-089bfa567519/go.mod h1:GvvjBRRGRdwPK5ydBHafDWAxML/pGHZbMvKqRZ5+Abc=
@@ -130,3 +142,12 @@ gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c/go.mod h1:K4uyk7z7BCEPqu6E+C
 lelux.net/x v0.0.0-20230507130254-6b0313b1b0e9 h1:CjkX6TJz6TUIfjGNKVSCqpt5DcuzjdXV2lWfGkXGxJc=
 lelux.net/x v0.0.0-20230507130254-6b0313b1b0e9/go.mod h1:/diZRF2gLkt+9GQLY9XjZ2DdcdiEaVNumQ8kBl0meS0=
 nhooyr.io/websocket v1.8.7/go.mod h1:B70DZP8IakI65RVQ51MsWP/8jndNma26DVA/nFSCgW0=
+vimagination.zapto.org/byteio v1.0.0 h1:IJV99bOUATR0Djs7zEjJfGODm3VB+wRnocoxpWlKvo8=
+vimagination.zapto.org/byteio v1.0.0/go.mod h1:l8m3xQOVMUWs7Sjbd3s+yWt7JIoSBc/35Hxm1F/QiAw=
+vimagination.zapto.org/limage v1.0.0 h1:5gAZdsu18Ax5r+vWChAAAZXYHfakmj2TdFpcsZZtN48=
+vimagination.zapto.org/limage v1.0.0/go.mod h1:oX7Zw56ZHjHkup1d9p2uVjL/NSfPuS+luFzTsEWVT/w=
+vimagination.zapto.org/memio v0.0.0-20200222190306-588ebc67b97d/go.mod h1:zHGDKp2tyvF4IAfLti4pKYqCJucXYmmKMb3UMrCHK/4=
+vimagination.zapto.org/memio v1.0.0 h1:r0GDf430aNuGpOAV57UTvbUzAf82UclRyGG/pBp1uvU=
+vimagination.zapto.org/memio v1.0.0/go.mod h1:zHGDKp2tyvF4IAfLti4pKYqCJucXYmmKMb3UMrCHK/4=
+vimagination.zapto.org/parser v1.0.0 h1:eIhnKZBf5WX48fwRNAp55ZCSJTpiKCiLXTFkimsXfq8=
+vimagination.zapto.org/parser v1.0.0/go.mod h1:WT+8/T+qTZDNVO5GcXv8pWSn7AIWakJZWMN1mL662WY=

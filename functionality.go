@@ -6,7 +6,9 @@ import (
 	pnm "github.com/jbuchbinder/gopnm"
 	"github.com/mokiat/goexr/exr"
 	"github.com/nielsAD/gowarcraft3/file/blp"
+	"github.com/oov/psd"
 	"github.com/samuel/go-pcx/pcx"
+	"github.com/xyproto/xpm"
 	"golang.org/x/image/bmp"
 	"golang.org/x/image/tiff"
 	"golang.org/x/image/vp8l"
@@ -18,6 +20,7 @@ import (
 	"lelux.net/x/image/qoi"
 	"os"
 	"path/filepath"
+	"vimagination.zapto.org/limage/xcf"
 
 	megaSD "github.com/bodgit/megasd/image"
 	webpEncoder "github.com/chai2010/webp"
@@ -47,6 +50,8 @@ var ValidInputTypes = []string{
 	"megasd", // github.com/bodgit/megasd/image
 	"qoi",    // lelux.net/x/image/qoi
 	"tga",    // github.com/blezek/tga
+	"xcf",    // vimagination.zapto.org/limage/xcf
+	"psd",    // github.com/oov/psd
 
 	"jfif", // self
 }
@@ -69,6 +74,8 @@ var ValidOutputTypes = []string{
 	"megasd", // github.com/bodgit/megasd/image
 	"qoi",    // lelux.net/x/image/qoi
 	"tga",    // github.com/blezek/tga
+	"xpm",    // github.com/xyproto/xpm
+	"xcf",    // vimagination.zapto.org/limage/xcf
 }
 
 type QualityInformation struct {
@@ -155,6 +162,14 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	case ".tga":
 		decodedImage, err = tga.Decode(f)
+
+	case ".xcf":
+		decodedImage, err = xcf.Decode(f)
+
+	case ".psd":
+		var psdResult *psd.PSD
+		psdResult, _, err = psd.Decode(f, nil)
+		decodedImage = psdResult.Picker
 	}
 
 	if err != nil {
@@ -211,6 +226,10 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		err = qoi.Encode(r, decodedImage)
 	case "tga":
 		err = tga.Encode(r, decodedImage)
+	case "xpm":
+		err = xpm.Encode(r, decodedImage)
+	case "xcf":
+		err = xcf.Encode(r, decodedImage)
 	}
 
 	if err != nil {
