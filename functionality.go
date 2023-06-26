@@ -125,52 +125,36 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	switch strings.ToLower(filepath.Ext(filename)) {
 	case ".bmp":
 		decodedImage, err = bmp.Decode(f)
-
 	case ".tiff":
 		decodedImage, err = tiff.Decode(f)
-
 	case ".vp8l":
 		decodedImage, err = vp8l.Decode(f)
-
 	case ".webp":
 		decodedImage, err = webp.Decode(f)
-
 	case ".gif":
 		decodedImage, err = gif.Decode(f)
-
 	case ".jpg", ".jpeg":
 		decodedImage, err = jpeg.Decode(f)
-
 	case ".png":
 		decodedImage, err = png.Decode(f)
-
 	case ".jfif":
 		decodedImage, err = selfJfif.Decode(f)
-
 	case ".pbm", ".pgm", ".ppm":
 		decodedImage, err = pnm.Decode(f)
-
 	case ".pcx":
 		decodedImage, err = pcx.Decode(f)
-
 	case ".blp":
 		decodedImage, err = blp.Decode(f)
-
 	case ".exr":
 		decodedImage, err = exr.Decode(f)
-
 	case ".megasd":
 		decodedImage, err = megaSD.Decode(f)
-
 	case ".qoi":
 		decodedImage, err = qoi.Decode(f)
-
 	case ".tga":
 		decodedImage, err = tga.Decode(f)
-
 	case ".xcf":
 		decodedImage, err = xcf.Decode(f)
-
 	case ".psd":
 		var psdResult *psd.PSD
 		psdResult, _, err = psd.Decode(f, nil)
