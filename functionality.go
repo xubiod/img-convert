@@ -20,6 +20,7 @@ import (
 	"lelux.net/x/image/qoi"
 	"os"
 	"path/filepath"
+	"strings"
 	"vimagination.zapto.org/limage/xcf"
 
 	megaSD "github.com/bodgit/megasd/image"
@@ -117,7 +118,7 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		return fmt.Errorf("%s is not a valid input, skipping", filename)
 	}
 
-	switch filepath.Ext(filename) {
+	switch strings.ToLower(filepath.Ext(filename)) {
 	case ".bmp":
 		decodedImage, err = bmp.Decode(f)
 
