@@ -8,3 +8,5 @@ Basic usage:
 
 That's the basic gist. File types with settings default to the highest settings, but you can further change the
 settings under options as you please.
+
+Written with <3 in GoLand.
