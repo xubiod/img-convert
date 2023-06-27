@@ -41,8 +41,6 @@ var (
 	gifColors       int32 = 256
 	tiffCompression int32 = 0
 	tiffPredictor         = false
-
-	//progress float32 = 0.0
 )
 
 const credit string = `credits n stuff
