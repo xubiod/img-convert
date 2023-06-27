@@ -27,7 +27,7 @@ import (
 	webpEncoder "github.com/chai2010/webp"
 	"github.com/leotaku/mobi/jfif"
 
-	selfJfif "img-convert/dedicated-decoder/jfif"
+	selfJfif "github.com/xubiod/img-convert/dedicated-decoder/jfif"
 )
 
 // ValidInputTypes
