@@ -1,4 +1,4 @@
-module img-convert
+module github.com/xubiod/img-convert
 
 go 1.20
 
