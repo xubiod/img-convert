@@ -83,6 +83,7 @@ webp        => golang.org/x/image/webp
 
 jfif        => github.com/leotaku/mobi/jfif
 psd         => github.com/oov/psd
+ase         => github.com/askeladdk/aseprite
 
 ------------- other libraries -------------
 imgui       => github.com/AllenDang/cimgui-go`
@@ -337,6 +338,46 @@ func showMiniWindow() {
 	imgui.End()
 }
 
+func dropOn(p []string) {
+	fmt.Printf("drop: %v", p)
+
+	var genericQuality = 0
+
+	switch ValidOutputTypes[selectedFileType] {
+	case "tiff":
+		genericQuality = int(tiffCompression)
+	case "gif":
+		genericQuality = int(gifColors)
+	case "jpeg", "jpg", "jfif":
+		genericQuality = int(qualityInt)
+	}
+
+	compiledErrors = ""
+	toldErrors = true
+	for i := range p {
+		exporterWaitGroup.Add(1)
+		go func(idx int) {
+			defer exporterWaitGroup.Done()
+			err := ConvertTo(p[idx], ValidOutputTypes[selectedFileType], QualityInformation{
+				QualityInt:    genericQuality,
+				QualityFloat:  float32(qualityInt),
+				TiffPredictor: tiffPredictor,
+				WebpExact:     exact,
+			}, !skipSameType, overwriteFiles)
+
+			if err != nil {
+				compiledErrors += err.Error() + "\n"
+			}
+		}(i)
+	}
+
+	exporterWaitGroup.Wait()
+
+	if compiledErrors != "" {
+		toldErrors = false
+	}
+}
+
 func ui() {
 	//var err error
 
@@ -346,47 +387,7 @@ func ui() {
 	backend.SetBgColor(imgui.NewVec4(0.45, .55, .6, 1.0))
 	backend.CreateWindow("img-convert - dropzone", int(windowSize.X), int(windowSize.Y), windowFlags)
 
-	backend.SetDropCallback(func(p []string) {
-		fmt.Printf("drop: %v", p)
-
-		var genericQuality = 0
-
-		switch ValidOutputTypes[selectedFileType] {
-		case "tiff":
-			genericQuality = int(tiffCompression)
-		case "gif":
-			genericQuality = int(gifColors)
-		case "jpeg", "jpg", "jfif":
-			genericQuality = int(qualityInt)
-		}
-
-		compiledErrors = ""
-		toldErrors = true
-		//progress = 0.0
-		for i := range p {
-			exporterWaitGroup.Add(1)
-			go func(idx int) {
-				defer exporterWaitGroup.Done()
-				err := ConvertTo(p[idx], ValidOutputTypes[selectedFileType], QualityInformation{
-					QualityInt:    genericQuality,
-					QualityFloat:  float32(qualityInt),
-					TiffPredictor: tiffPredictor,
-					WebpExact:     exact,
-				}, !skipSameType, overwriteFiles)
-				//progress = float32(i+1) / float32(len(p))
-
-				if err != nil {
-					compiledErrors += err.Error() + "\n"
-				}
-			}(i)
-		}
-
-		exporterWaitGroup.Wait()
-
-		if compiledErrors != "" {
-			toldErrors = false
-		}
-	})
+	backend.SetDropCallback(dropOn)
 
 	imgui.StyleColorsClassic()
 	backend.SetTargetFPS(fps)

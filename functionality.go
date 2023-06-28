@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/askeladdk/aseprite"
 	"github.com/blezek/tga"
 	pnm "github.com/jbuchbinder/gopnm"
 	"github.com/mokiat/goexr/exr"
@@ -44,17 +45,19 @@ var ValidInputTypes = []string{
 	"vp8l", // golang.org/x/image
 	"webp", // golang.org/x/image
 
-	"pbm",    // github.com/jbuchbinder/gopnm
-	"pgm",    // github.com/jbuchbinder/gopnm
-	"ppm",    // github.com/jbuchbinder/gopnm
-	"pcx",    // github.com/samuel/go-pcx/pcx
-	"blp",    // github.com/nielsAD/gowarcraft3/file/blp
-	"exr",    // github.com/mokiat/goexr/exr
-	"megasd", // github.com/bodgit/megasd/image
-	"qoi",    // lelux.net/x/image/qoi
-	"tga",    // github.com/blezek/tga
-	"xcf",    // vimagination.zapto.org/limage/xcf
-	"psd",    // github.com/oov/psd
+	"pbm",      // github.com/jbuchbinder/gopnm
+	"pgm",      // github.com/jbuchbinder/gopnm
+	"ppm",      // github.com/jbuchbinder/gopnm
+	"pcx",      // github.com/samuel/go-pcx/pcx
+	"blp",      // github.com/nielsAD/gowarcraft3/file/blp
+	"exr",      // github.com/mokiat/goexr/exr
+	"megasd",   // github.com/bodgit/megasd/image
+	"qoi",      // lelux.net/x/image/qoi
+	"tga",      // github.com/blezek/tga
+	"xcf",      // vimagination.zapto.org/limage/xcf
+	"psd",      // github.com/oov/psd
+	"ase",      // github.com/askeladdk/aseprite
+	"aseprite", // github.com/askeladdk/aseprite
 
 	"jfif", // self
 }
@@ -159,6 +162,8 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		var psdResult *psd.PSD
 		psdResult, _, err = psd.Decode(f, nil)
 		decodedImage = psdResult.Picker
+	case ".ase", ".aseprite":
+		decodedImage, err = aseprite.Decode(f)
 	}
 
 	if err != nil {

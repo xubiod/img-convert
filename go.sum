@@ -3,6 +3,8 @@ github.com/AllenDang/cimgui-go v0.0.0-20230619023324-e4dae85333e0/go.mod h1:iNfb
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/andybalholm/brotli v1.0.4/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
 github.com/andybalholm/cascadia v1.3.1/go.mod h1:R4bJ1UQfqADjvDa4P6HZHLh/3OxWWEqc0Sk8XGwHqvA=
+github.com/askeladdk/aseprite v0.0.3 h1:8bNh/XeOTaDmQSI4C1YA+Kqq8PElXtya7aIsC8MNz+w=
+github.com/askeladdk/aseprite v0.0.3/go.mod h1:lVW4EwZ7lgQjeHp7MhYj1NII5a/yLYyvAo7COPIn3WY=
 github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017 h1:TWk6m6k3qegbUZsdsHk/ix22ANqPgLau40bPwiNQN40=
 github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017/go.mod h1:WnX8JiQN+UtyUPq/1EIUaB2WVX3wdAmOBH5K52NyOO0=
 github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3 h1:lHZwKpae+uNaq/cdDcHouYfUUSm+J9M+O+i7NbTSvBU=

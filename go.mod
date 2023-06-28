@@ -23,6 +23,7 @@ require (
 )
 
 require (
+	github.com/askeladdk/aseprite v0.0.3 // indirect
 	github.com/ericpauley/go-quantize v0.0.0-20190607171302-1dcfb69dcdab // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
