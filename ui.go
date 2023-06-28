@@ -152,6 +152,7 @@ func showConfigurationWindow() {
 
 	imgui.TextUnformatted("to convert, just drop it on the main window, files will appear in the same directory")
 	imgui.TextWrapped(fmt.Sprintf("currently supports decoding: %v", ValidInputTypes))
+	imgui.TextWrapped("layered formats will get flattened, and animations *might* become texture aliases, but it depends on the format and decoder")
 
 	imgui.NewLine()
 
