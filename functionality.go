@@ -5,6 +5,7 @@ import (
 	"github.com/askeladdk/aseprite"
 	"github.com/blezek/tga"
 	pnm "github.com/jbuchbinder/gopnm"
+	"github.com/mat/besticon/ico"
 	"github.com/mokiat/goexr/exr"
 	"github.com/nielsAD/gowarcraft3/file/blp"
 	"github.com/oov/psd"
@@ -58,6 +59,7 @@ var ValidInputTypes = []string{
 	"psd",      // github.com/oov/psd
 	"ase",      // github.com/askeladdk/aseprite
 	"aseprite", // github.com/askeladdk/aseprite
+	"ico",      // github.com/mat/besticon/ico
 
 	"jfif", // self
 }
@@ -164,6 +166,8 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		decodedImage = psdResult.Picker
 	case ".ase", ".aseprite":
 		decodedImage, err = aseprite.Decode(f)
+	case ".ico":
+		decodedImage, err = ico.Decode(f)
 	}
 
 	if err != nil {

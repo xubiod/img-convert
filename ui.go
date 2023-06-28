@@ -84,6 +84,7 @@ webp        => golang.org/x/image/webp
 jfif        => github.com/leotaku/mobi/jfif
 psd         => github.com/oov/psd
 ase         => github.com/askeladdk/aseprite
+ico         => github.com/mat/besticon/ico
 
 ------------- other libraries -------------
 imgui       => github.com/AllenDang/cimgui-go`
