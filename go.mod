@@ -13,6 +13,7 @@ require (
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
 	github.com/chai2010/webp v1.1.1
+	github.com/hhrutter/tiff v1.0.0
 	github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0
 	github.com/mat/besticon v3.12.0+incompatible
 	github.com/mokiat/goexr v0.1.0
@@ -27,6 +28,7 @@ require (
 require (
 	github.com/ericpauley/go-quantize v0.0.0-20190607171302-1dcfb69dcdab // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
+	github.com/hhrutter/lzw v0.0.0-20230302233922-b0c9d7de54a7 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xyproto/palgen v1.2.0 // indirect

@@ -50,7 +50,22 @@ var (
 		TiffPredictor:   false,
 	}
 
-	losslessTooltip = "supported by: webp"
+	skipSameTypeTooltip = "if checked, the converter will skip loading and converting files\n" +
+		"that are the same type as the output, i.e. skipping png => png\n\n" +
+		"this can be unchecked if the behaviour is desired, but sizes and quality might change,\n" +
+		"(as the raw pixel data is getting unpacked and repacked) but the input files will not\n" +
+		"be overwritten due to how files are named"
+
+	overwriteFileTooltip = "if checked, the converter will overwrite files that already exist,\n" +
+		"given that they share the output filename of *.[old type].[new type]\n" +
+		"i.e. overwriting \"file.png.jpg\" if converting \"file.png\" to jpg.\n\n" +
+		"if unchecked, it will skip the file and report the skip when finished"
+
+	losslessTooltip = "supported by: webp\n\nlossless compression will not discard data (higher quality, larger file size)\nif unchecked, it will use lossy, which will discard data (lower quality, smaller file size)"
+
+	gifColorTooltip = "changes the amount of allowed colors for gif\n\nthere's only a maximum of 256 available on gif's\npalette table, but it can be less"
+
+	tiffPredictorTooltip = "determines whether a differencing predictor is used in lzw compression\nit can improve the compression in certain situations"
 
 	exactTooltip = "preserves RGB values in transparent areas\nif off, rgba(255, 127, 0, 0.0) would (probably) become rgba(0, 0, 0, 0.0)"
 
@@ -70,7 +85,6 @@ jpeg/jpg    => image/jpeg
 png         => image/png
 
 bmp         => golang.org/x/image/bmp
-tiff        => golang.org/x/image/tiff
 
 pbm         => github.com/jbuchbinder/gopnm
 pgm         => github.com/jbuchbinder/gopnm
@@ -80,6 +94,7 @@ megasd      => github.com/bodgit/megasd/image
 qoi         => lelux.net/x/image/qoi
 tga         => github.com/blezek/tga
 xcf         => vimagination.zapto.org/limage/xcf
+tiff        => github.com/hhrutter/tiff
 
 ------------ encoder libraries ------------
 ---------- (allowed file output) ----------
@@ -142,8 +157,16 @@ var tiffCompressionNames = []string{
 	"uncompressed",
 	"deflate",
 	"lzw",
-	"ccittgroup3",
-	"ccittgroup4",
+	// "ccittgroup3",
+	// "ccittgroup4",
+}
+
+var tiffCompressionTooltips = []string{
+	"lossless, supports all image types\nno compression is used",
+	"lossless, supports all image types\nuses zlib's deflate method to compress",
+	"lossless, supports all image types\nuses lempel-ziv-welch to compress, predictor has an effect with lzw compression",
+	// "while listed, the package used does not support this compression method", // "lossless, BLACK AND WHITE ONLY\nyou might experience problems using this method with this tool",
+	// "while listed, the package used does not support this compression method", // "lossless, BLACK AND WHITE ONLY\nyou might experience problems using this method with this tool",
 }
 
 func uiLoop() {
@@ -191,21 +214,14 @@ func showConfigurationWindow() {
 
 	imgui.Checkbox("skip same types", &opts.SkipSameType)
 	if imgui.IsItemHovered() {
-		imgui.SetTooltip("if checked, the converter will skip loading and converting files\n" +
-			"that are the same type as the output, i.e. skipping png => png\n\n" +
-			"this can be unchecked if the behaviour is desired, but sizes and quality might change,\n" +
-			"(as the raw pixel data is getting unpacked and repacked) but the input files will not\n" +
-			"be overwritten due to how files are named")
+		imgui.SetTooltip(skipSameTypeTooltip)
 	}
 
 	imgui.SameLine()
 
 	imgui.Checkbox("overwrite files", &opts.OverwriteFiles)
 	if imgui.IsItemHovered() {
-		imgui.SetTooltip("if checked, the converter will overwrite files that already exist,\n" +
-			"given that they share the output filename of *.[old type].[new type]\n" +
-			"i.e. overwriting \"file.png.jpg\" if converting \"file.png\" to jpg.\n\n" +
-			"if unchecked, it will skip the file and report the skip when finished")
+		imgui.SetTooltip(overwriteFileTooltip)
 	}
 
 	if compiledErrors != "" && !toldErrors {
@@ -248,7 +264,7 @@ func showConfigurationWindow() {
 		case "gif":
 			imgui.SliderInt("gif colors", &opts.GifColors, 1, 256)
 			if imgui.IsItemHovered() {
-				imgui.SetTooltip("changes the amount of allowed colors for gif\n\nthere's only a maximum of 256 available on gif's\npalette table, but it can be less")
+				imgui.SetTooltip(gifColorTooltip)
 			}
 
 		case "tiff":
@@ -263,12 +279,16 @@ func showConfigurationWindow() {
 				if isSelected {
 					imgui.SetItemDefaultFocus()
 				}
+
+				if imgui.IsItemHovered() {
+					imgui.SetTooltip(tiffCompressionTooltips[i])
+				}
 			}
 			imgui.EndListBox()
 
 			imgui.Checkbox("tiff predictor", &opts.TiffPredictor)
 			if imgui.IsItemHovered() {
-				imgui.SetTooltip("determines whether a differencing predictor is used\nit can improve the compression in certain situations")
+				imgui.SetTooltip(tiffPredictorTooltip)
 			}
 
 		case "webp":

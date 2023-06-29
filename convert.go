@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 	"github.com/blezek/tga"
+	"github.com/hhrutter/tiff"
 	pnm "github.com/jbuchbinder/gopnm"
 	"github.com/samuel/go-pcx/pcx"
 	"github.com/xyproto/xpm"
 	"golang.org/x/image/bmp"
-	"golang.org/x/image/tiff"
 	"image/gif"
 	"image/jpeg"
 	"image/png"
