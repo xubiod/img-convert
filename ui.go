@@ -353,7 +353,7 @@ func showMiniWindow() {
 }
 
 func dropOn(p []string) {
-	fmt.Printf("drop: %v", p)
+	fmt.Printf("drop: %v\n", p)
 
 	var genericQuality = 0
 
