@@ -61,15 +61,22 @@ var (
 		"i.e. overwriting \"file.png.jpg\" if converting \"file.png\" to jpg.\n\n" +
 		"if unchecked, it will skip the file and report the skip when finished"
 
-	losslessTooltip = "supported by: webp\n\nlossless compression will not discard data (higher quality, larger file size)\nif unchecked, it will use lossy, which will discard data (lower quality, smaller file size)"
+	losslessTooltip = "supported by: webp\n\n" +
+		"lossless compression will not discard data (higher quality, larger file size)\n" +
+		"if unchecked, it will use lossy, which will discard data (lower quality, smaller file size)"
 
-	gifColorTooltip = "changes the amount of allowed colors for gif\n\nthere's only a maximum of 256 available on gif's\npalette table, but it can be less"
+	gifColorTooltip = "changes the amount of allowed colors for gif\n\n" +
+		"there's only a maximum of 256 available on gif's\n" +
+		"palette table, but it can be less"
 
-	tiffPredictorTooltip = "determines whether a differencing predictor is used in lzw compression\nit can improve the compression in certain situations"
+	tiffPredictorTooltip = "determines whether a differencing predictor is used in lzw compression\n" +
+		"it can improve the compression in certain situations"
 
-	exactTooltip = "preserves RGB values in transparent areas\nif off, rgba(255, 127, 0, 0.0) would (probably) become rgba(0, 0, 0, 0.0)"
+	exactTooltip = "preserves RGB values in transparent areas\n" +
+		"if off, rgba(255, 127, 0, 0.0) would (probably) become rgba(0, 0, 0, 0.0)"
 
-	qualityTooltip = "supported by: jpeg, webp, jfif\n\n0%% is worst, 100%% is best"
+	qualityTooltip = "supported by: jpeg, webp, jfif\n\n" +
+		"0%% is worst, 100%% is best"
 )
 
 const credit string = `credits n stuff
