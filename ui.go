@@ -29,7 +29,19 @@ var (
 
 	selectedFileType = 0
 
-	lossless        = true
+	opts = SettingsSavable{
+		SkipSameType:   true,
+		OverwriteFiles: true,
+
+		Lossless: true,
+		Quality:  100,
+
+		WebpExact:       true,
+		GifColors:       256,
+		TiffCompression: 0,
+		TiffPredictor:   false,
+	}
+
 	losslessTooltip = "supported by: webp"
 
 	exact        = true
@@ -175,7 +187,7 @@ func showConfigurationWindow() {
 
 	imgui.NewLine()
 
-	imgui.Checkbox("skip same types", &skipSameType)
+	imgui.Checkbox("skip same types", &opts.SkipSameType)
 	if imgui.IsItemHovered() {
 		imgui.SetTooltip("if checked, the converter will skip loading and converting files\n" +
 			"that are the same type as the output, i.e. skipping png => png\n\n" +
@@ -186,7 +198,7 @@ func showConfigurationWindow() {
 
 	imgui.SameLine()
 
-	imgui.Checkbox("overwrite files", &overwriteFiles)
+	imgui.Checkbox("overwrite files", &opts.OverwriteFiles)
 	if imgui.IsItemHovered() {
 		imgui.SetTooltip("if checked, the converter will overwrite files that already exist,\n" +
 			"given that they share the output filename of *.[old type].[new type]\n" +
@@ -221,12 +233,12 @@ func showConfigurationWindow() {
 	if imgui.CollapsingHeaderTreeNodeFlags("export options (defaults to highest quality per method)") {
 		imgui.TextUnformatted("generic options (for those that support it):")
 
-		imgui.Checkbox("lossless", &lossless)
+		imgui.Checkbox("lossless", &opts.Lossless)
 		if imgui.IsItemHovered() {
 			imgui.SetTooltip(losslessTooltip)
 		}
 
-		imgui.SliderInt("quality", &qualityInt, 0, 100)
+		imgui.SliderInt("quality", &opts.Quality, 0, 100)
 		if imgui.IsItemHovered() {
 			imgui.SetTooltip(qualityTooltip)
 		}
@@ -236,7 +248,7 @@ func showConfigurationWindow() {
 
 		switch ValidOutputTypes[selectedFileType] {
 		case "gif":
-			imgui.SliderInt("gif colors", &gifColors, 1, 256)
+			imgui.SliderInt("gif colors", &opts.GifColors, 1, 256)
 			if imgui.IsItemHovered() {
 				imgui.SetTooltip("changes the amount of allowed colors for gif\n\nthere's only a maximum of 256 available on gif's\npalette table, but it can be less")
 			}
@@ -245,9 +257,9 @@ func showConfigurationWindow() {
 			imgui.BeginListBoxV("tiff compression type", imgui.Vec2{Y: 87})
 			var i int32 = 0
 			for i = 0; i < int32(len(tiffCompressionNames)); i++ {
-				isSelected := tiffCompression == i
+				isSelected := opts.TiffCompression == i
 				if imgui.SelectableBoolPtr(tiffCompressionNames[i], &isSelected) {
-					tiffCompression = i
+					opts.TiffCompression = i
 				}
 
 				if isSelected {
@@ -256,13 +268,13 @@ func showConfigurationWindow() {
 			}
 			imgui.EndListBox()
 
-			imgui.Checkbox("tiff predictor", &tiffPredictor)
+			imgui.Checkbox("tiff predictor", &opts.TiffPredictor)
 			if imgui.IsItemHovered() {
 				imgui.SetTooltip("determines whether a differencing predictor is used\nit can improve the compression in certain situations")
 			}
 
 		case "webp":
-			imgui.Checkbox("webp exact", &exact)
+			imgui.Checkbox("webp exact", &opts.WebpExact)
 			if imgui.IsItemHovered() {
 				imgui.SetTooltip(exactTooltip)
 			}
@@ -347,11 +359,11 @@ func dropOn(p []string) {
 
 	switch ValidOutputTypes[selectedFileType] {
 	case "tiff":
-		genericQuality = int(tiffCompression)
+		genericQuality = int(opts.TiffCompression)
 	case "gif":
-		genericQuality = int(gifColors)
+		genericQuality = int(opts.GifColors)
 	case "jpeg", "jpg", "jfif":
-		genericQuality = int(qualityInt)
+		genericQuality = int(opts.Quality)
 	}
 
 	compiledErrors = ""
