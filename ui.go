@@ -14,9 +14,6 @@ var (
 	windowFlags     imgui.GLFWWindowFlags
 	fps             uint = 45
 
-	skipSameType   = true
-	overwriteFiles = true
-
 	errorPopupName = "Whoops!"
 
 	compiledErrors = ""
@@ -44,15 +41,9 @@ var (
 
 	losslessTooltip = "supported by: webp"
 
-	exact        = true
 	exactTooltip = "preserves RGB values in transparent areas\nif off, rgba(255, 127, 0, 0.0) would (probably) become rgba(0, 0, 0, 0.0)"
 
-	qualityInt     int32 = 100
-	qualityTooltip       = "supported by: jpeg, webp, jfif\n\n0%% is worst, 100%% is best"
-
-	gifColors       int32 = 256
-	tiffCompression int32 = 0
-	tiffPredictor         = false
+	qualityTooltip = "supported by: jpeg, webp, jfif\n\n0%% is worst, 100%% is best"
 )
 
 const credit string = `credits n stuff
