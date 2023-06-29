@@ -6,6 +6,17 @@ import (
 	"sync"
 )
 
+type SettingsSavable struct {
+	SkipSameType    bool
+	OverwriteFiles  bool
+	Lossless        bool
+	Quality         int32
+	WebpExact       bool
+	GifColors       int32
+	TiffCompression int32
+	TiffPredictor   bool
+}
+
 var (
 	exporterWaitGroup sync.WaitGroup
 
@@ -400,6 +411,32 @@ func ui() {
 	backend.Run(uiLoop)
 }
 
+func writeOpts(overwrite bool) bool {
+	_, err := os.Stat("opts.json")
+	if errors.Is(err, os.ErrNotExist) || overwrite {
+		data, err := json.MarshalIndent(opts, "", "\t")
+
+		if err == nil {
+			err = os.WriteFile("opts.json", data, 0666)
+			if err != nil {
+				_ = os.Remove("opts.json")
+			}
+		}
+
+		return true
+	}
+
+	return false
+}
+
+func readOpts() {
+	data, _ := os.ReadFile("opts.json")
+	_ = json.Unmarshal(data, &opts)
+}
+
 func main() {
+	//if !writeOpts() {
+	//	readOpts()
+	//}
 	ui()
 }
