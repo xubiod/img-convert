@@ -208,10 +208,6 @@ func showConfigurationWindow() {
 			"if unchecked, it will skip the file and report the skip when finished")
 	}
 
-	//if floating {
-	//	windowFlags = windowFlags ^ imgui.GLFWWindowFlagsFloating
-	//}
-
 	if compiledErrors != "" && !toldErrors {
 		imgui.OpenPopupStr(errorPopupName)
 		toldErrors = true
@@ -288,7 +284,6 @@ func showConfigurationWindow() {
 
 	imgui.NewLine()
 
-	//imgui.ProgressBar(progress)
 	if imgui.Button("credits") {
 		showCredit = !showCredit
 	}
@@ -395,8 +390,6 @@ func dropOn(p []string) {
 }
 
 func ui() {
-	//var err error
-
 	specificBackend = *imgui.NewGLFWBackend()
 	backend = imgui.CreateBackend(&specificBackend)
 
@@ -411,32 +404,6 @@ func ui() {
 	backend.Run(uiLoop)
 }
 
-func writeOpts(overwrite bool) bool {
-	_, err := os.Stat("opts.json")
-	if errors.Is(err, os.ErrNotExist) || overwrite {
-		data, err := json.MarshalIndent(opts, "", "\t")
-
-		if err == nil {
-			err = os.WriteFile("opts.json", data, 0666)
-			if err != nil {
-				_ = os.Remove("opts.json")
-			}
-		}
-
-		return true
-	}
-
-	return false
-}
-
-func readOpts() {
-	data, _ := os.ReadFile("opts.json")
-	_ = json.Unmarshal(data, &opts)
-}
-
 func main() {
-	//if !writeOpts() {
-	//	readOpts()
-	//}
 	ui()
 }
