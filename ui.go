@@ -365,10 +365,10 @@ func dropOn(p []string) {
 			defer exporterWaitGroup.Done()
 			err := ConvertTo(p[idx], ValidOutputTypes[selectedFileType], QualityInformation{
 				QualityInt:    genericQuality,
-				QualityFloat:  float32(qualityInt),
-				TiffPredictor: tiffPredictor,
-				WebpExact:     exact,
-			}, !skipSameType, overwriteFiles)
+				QualityFloat:  float32(opts.Quality),
+				TiffPredictor: opts.TiffPredictor,
+				WebpExact:     opts.WebpExact,
+			}, !opts.SkipSameType, opts.OverwriteFiles)
 
 			if err != nil {
 				compiledErrors += err.Error() + "\n"
