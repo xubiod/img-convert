@@ -54,7 +54,7 @@ type QualityInformation struct {
 	TiffPredictor bool
 }
 
-func ConvertTo(filename string, outputFileType string, quality QualityInformation, overrideSameTypeSkip bool, overwriteFiles bool) error {
+func ConvertTo(filename string, outputFileType string, quality QualityInformation, overrideSameTypeSkip bool, overwriteFiles bool) (err error) {
 	fmt.Printf("starting %s\n", filename)
 
 	if (filepath.Ext(filename) == "."+outputFileType) && !overrideSameTypeSkip {
@@ -66,6 +66,10 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	}
 
 	decodedImage, err := Import(filename)
+
+	if err != nil {
+		return fmt.Errorf("%s import failed, skipping (%s)", filename, err.Error())
+	}
 
 	r, err := os.Create(filename + "." + outputFileType)
 	if err != nil {
