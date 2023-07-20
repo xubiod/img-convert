@@ -2,22 +2,23 @@ package main
 
 import (
 	"fmt"
+	"image/gif"
+	"image/jpeg"
+	"image/png"
+	"os"
+	"path/filepath"
+
 	"github.com/blezek/tga"
 	"github.com/hhrutter/tiff"
 	pnm "github.com/jbuchbinder/gopnm"
 	"github.com/samuel/go-pcx/pcx"
 	"github.com/xyproto/xpm"
 	"golang.org/x/image/bmp"
-	"image/gif"
-	"image/jpeg"
-	"image/png"
 	"lelux.net/x/image/qoi"
-	"os"
-	"path/filepath"
 	"vimagination.zapto.org/limage/xcf"
 
 	megaSD "github.com/bodgit/megasd/image"
-	webpEncoder "github.com/chai2010/webp"
+	"github.com/chai2010/webp"
 	"github.com/leotaku/mobi/jfif"
 )
 
@@ -95,7 +96,7 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 			Quality: quality.QualityInt,
 		})
 	case "webp":
-		err = webpEncoder.Encode(r, decodedImage, &webpEncoder.Options{
+		err = webp.Encode(r, decodedImage, &webp.Options{
 			Quality:  quality.QualityFloat,
 			Lossless: quality.Lossless,
 			Exact:    quality.WebpExact,
