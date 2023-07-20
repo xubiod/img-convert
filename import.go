@@ -2,6 +2,14 @@ package main
 
 import (
 	"fmt"
+	"image"
+	"image/gif"
+	"image/jpeg"
+	"image/png"
+	"os"
+	"path/filepath"
+	"strings"
+
 	"github.com/askeladdk/aseprite"
 	"github.com/blezek/tga"
 	megaSD "github.com/bodgit/megasd/image"
@@ -15,15 +23,8 @@ import (
 	selfJfif "github.com/xubiod/img-convert/dedicated-decoder/jfif"
 	"golang.org/x/image/bmp"
 	"golang.org/x/image/vp8l"
-	"image"
-	"image/gif"
-	"image/jpeg"
-	"image/png"
 	"lelux.net/x/image/qoi"
 	"lelux.net/x/image/webp"
-	"os"
-	"path/filepath"
-	"strings"
 	"vimagination.zapto.org/limage/xcf"
 )
 

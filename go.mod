@@ -4,11 +4,11 @@ go 1.20
 
 require (
 	github.com/leotaku/mobi v0.0.0-20230426193406-3c3105acd3e2
-	golang.org/x/image v0.8.0
+	golang.org/x/image v0.9.0
 )
 
 require (
-	github.com/AllenDang/cimgui-go v0.0.0-20230619023324-e4dae85333e0
+	github.com/AllenDang/cimgui-go v0.0.0-20230720025235-f2ff398a66b2
 	github.com/askeladdk/aseprite v0.0.3
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
@@ -26,13 +26,15 @@ require (
 )
 
 require (
-	github.com/ericpauley/go-quantize v0.0.0-20190607171302-1dcfb69dcdab // indirect
+	github.com/ericpauley/go-quantize v0.0.0-20200331213906-ae555eb2afa4 // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
-	github.com/hhrutter/lzw v0.0.0-20230302233922-b0c9d7de54a7 // indirect
+	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
+	github.com/peterhellberg/gfx v0.0.0-20230526095554-e6202e653d52 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
-	github.com/xyproto/palgen v1.2.0 // indirect
-	vimagination.zapto.org/byteio v1.0.0 // indirect
+	github.com/xyproto/burnpal v0.0.0-20191014132200-bd9858647795 // indirect
+	github.com/xyproto/palgen v1.5.0 // indirect
+	vimagination.zapto.org/byteio v1.0.5 // indirect
 	vimagination.zapto.org/memio v1.0.0 // indirect
-	vimagination.zapto.org/parser v1.0.0 // indirect
+	vimagination.zapto.org/parser v1.0.2 // indirect
 )
