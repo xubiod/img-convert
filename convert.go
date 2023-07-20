@@ -48,8 +48,7 @@ var ValidOutputTypes = []string{
 
 type QualityInformation struct {
 	Lossless      bool
-	QualityInt    int
-	QualityFloat  float32
+	Quality       int
 	WebpExact     bool
 	TiffPredictor bool
 }
@@ -82,26 +81,26 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		err = bmp.Encode(r, decodedImage)
 	case "tiff":
 		err = tiff.Encode(r, decodedImage, &tiff.Options{
-			Compression: tiff.CompressionType(quality.QualityInt),
+			Compression: tiff.CompressionType(quality.Quality),
 			Predictor:   quality.TiffPredictor,
 		})
 	case "gif":
 		err = gif.Encode(r, decodedImage, &gif.Options{
-			NumColors: quality.QualityInt,
+			NumColors: quality.Quality,
 		})
 	case "jpeg", "jpg":
 		err = jpeg.Encode(r, decodedImage, &jpeg.Options{
-			Quality: quality.QualityInt,
+			Quality: quality.Quality,
 		})
 	case "png":
 		err = png.Encode(r, decodedImage)
 	case "jfif":
 		err = jfif.Encode(r, decodedImage, &jpeg.Options{
-			Quality: quality.QualityInt,
+			Quality: quality.Quality,
 		})
 	case "webp":
 		err = webp.Encode(r, decodedImage, &webp.Options{
-			Quality:  quality.QualityFloat,
+			Quality:  float32(quality.Quality),
 			Lossless: quality.Lossless,
 			Exact:    quality.WebpExact,
 		})

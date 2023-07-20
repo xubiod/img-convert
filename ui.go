@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	imgui "github.com/AllenDang/cimgui-go"
 	"sync"
+
+	imgui "github.com/AllenDang/cimgui-go"
 )
 
 type SettingsSavable struct {
@@ -397,8 +398,7 @@ func dropOn(p []string) {
 		go func(idx int) {
 			defer exporterWaitGroup.Done()
 			err := ConvertTo(p[idx], ValidOutputTypes[selectedFileType], QualityInformation{
-				QualityInt:    genericQuality,
-				QualityFloat:  float32(opts.Quality),
+				Quality:       genericQuality,
 				TiffPredictor: opts.TiffPredictor,
 				WebpExact:     opts.WebpExact,
 			}, !opts.SkipSameType, opts.OverwriteFiles)
