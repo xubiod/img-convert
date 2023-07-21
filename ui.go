@@ -330,11 +330,13 @@ func showCreditWindow() {
 	imgui.End()
 }
 
-var showMetrics = false
-var showUserGuide = false
-var showDebugLog = false
-var showStackTool = false
-var showStyleEdit = false
+var (
+	showMetrics   = false
+	showUserGuide = false
+	showDebugLog  = false
+	showStackTool = false
+	showStyleEdit = false
+)
 
 func showMiniWindow() {
 	imgui.BeginV("imgui builtin", &showMini, imgui.WindowFlagsNone)
