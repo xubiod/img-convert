@@ -177,6 +177,14 @@ var tiffCompressionTooltips = []string{
 	// "while listed, the package used does not support this compression method", // "lossless, BLACK AND WHITE ONLY\nyou might experience problems using this method with this tool",
 }
 
+var (
+	showMetrics   = false
+	showUserGuide = false
+	showDebugLog  = false
+	showStackTool = false
+	showStyleEdit = false
+)
+
 func uiLoop() {
 	if showMini {
 		showMiniWindow()
@@ -329,14 +337,6 @@ func showCreditWindow() {
 	imgui.TextWrapped(credit)
 	imgui.End()
 }
-
-var (
-	showMetrics   = false
-	showUserGuide = false
-	showDebugLog  = false
-	showStackTool = false
-	showStyleEdit = false
-)
 
 func showMiniWindow() {
 	imgui.BeginV("imgui builtin", &showMini, imgui.WindowFlagsNone)
