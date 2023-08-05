@@ -389,7 +389,7 @@ func dropOn(p []string) {
 		genericQuality = int(opts.TiffCompression)
 	case "gif":
 		genericQuality = int(opts.GifColors)
-	case "jpeg", "jpg", "jfif":
+	case "jpeg", "jpg", "jfif", "webp":
 		genericQuality = int(opts.Quality)
 	}
 
