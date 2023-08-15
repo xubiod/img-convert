@@ -4,11 +4,11 @@ go 1.20
 
 require (
 	github.com/leotaku/mobi v0.0.0-20230426193406-3c3105acd3e2
-	golang.org/x/image v0.9.0
+	golang.org/x/image v0.11.0
 )
 
 require (
-	github.com/AllenDang/cimgui-go v0.0.0-20230720025235-f2ff398a66b2
+	github.com/AllenDang/cimgui-go v0.0.0-20230815131312-efad4ba697f0
 	github.com/askeladdk/aseprite v0.0.3
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
