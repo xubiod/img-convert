@@ -1,6 +1,6 @@
 module github.com/xubiod/img-convert
 
-go 1.20
+go 1.21
 
 require (
 	github.com/leotaku/mobi v0.0.0-20230426193406-3c3105acd3e2
