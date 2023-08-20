@@ -8,12 +8,12 @@ require (
 )
 
 require (
-	github.com/AllenDang/cimgui-go v0.0.0-20230815131312-efad4ba697f0
+	github.com/AllenDang/cimgui-go v0.0.0-20230817181741-d3d2889eca19
 	github.com/askeladdk/aseprite v0.0.3
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
 	github.com/chai2010/webp v1.1.1
-	github.com/hhrutter/tiff v1.0.0
+	github.com/hhrutter/tiff v1.0.1
 	github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0
 	github.com/mat/besticon v3.12.0+incompatible
 	github.com/mokiat/goexr v0.1.0

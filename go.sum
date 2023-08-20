@@ -1,5 +1,5 @@
-github.com/AllenDang/cimgui-go v0.0.0-20230815131312-efad4ba697f0 h1:EyztNuuj0F3edIXBCB3aQ/l7WH7EnBJ75L2Agepnld0=
-github.com/AllenDang/cimgui-go v0.0.0-20230815131312-efad4ba697f0/go.mod h1:VrE6O7ceAvwCHDF9NWn/AnasJHVMt4+dfYq7gm9nCb4=
+github.com/AllenDang/cimgui-go v0.0.0-20230817181741-d3d2889eca19 h1:19Ob4JdjMYIM98l+48+tGxpkxZvCKJ/sEs+z7rYeCoQ=
+github.com/AllenDang/cimgui-go v0.0.0-20230817181741-d3d2889eca19/go.mod h1:VrE6O7ceAvwCHDF9NWn/AnasJHVMt4+dfYq7gm9nCb4=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/andybalholm/brotli v1.0.4/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
 github.com/andybalholm/cascadia v1.3.1/go.mod h1:R4bJ1UQfqADjvDa4P6HZHLh/3OxWWEqc0Sk8XGwHqvA=
@@ -19,6 +19,7 @@ github.com/ericpauley/go-quantize v0.0.0-20190607171302-1dcfb69dcdab/go.mod h1:H
 github.com/ericpauley/go-quantize v0.0.0-20200331213906-ae555eb2afa4 h1:BBade+JlV/f7JstZ4pitd4tHhpN+w+6I+LyOS7B4fyU=
 github.com/ericpauley/go-quantize v0.0.0-20200331213906-ae555eb2afa4/go.mod h1:H7chHJglrhPPzetLdzBleF8d22WYOv7UM/lEKYiwlKM=
 github.com/ftrvxmtrx/tga v0.0.0-20150524081124-bd8e8d5be13a h1:eSqaRmdlZ9JsJ7JuWfDr3ym3monToXRczohBOL+heVQ=
+github.com/ftrvxmtrx/tga v0.0.0-20150524081124-bd8e8d5be13a/go.mod h1:US5WvgEHtG+BvWNNs6gk937h0QL2g2x+r7RH8m3g80Y=
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
 github.com/gin-gonic/gin v1.6.3/go.mod h1:75u5sXoLsGZoRN5Sgbi1eraJ4GU3++wFwWzhwvtwp4M=
 github.com/go-playground/assert/v2 v2.0.1/go.mod h1:VDjEfimB/XKnb+ZQfWdccd7VUvScMdVu0Titje2rxJ4=
@@ -40,8 +41,8 @@ github.com/gorilla/websocket v1.4.1/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/ad
 github.com/graphql-go/graphql v0.8.0/go.mod h1:nKiHzRM0qopJEwCITUuIsxk9PlVlwIiiI8pnJEhordQ=
 github.com/hhrutter/lzw v1.0.0 h1:laL89Llp86W3rRs83LvKbwYRx6INE8gDn0XNb1oXtm0=
 github.com/hhrutter/lzw v1.0.0/go.mod h1:2HC6DJSn/n6iAZfgM3Pg+cP1KxeWc3ezG8bBqW5+WEo=
-github.com/hhrutter/tiff v1.0.0 h1:T8/QVXiABO6Er7XCoExh4XPGyMO+X1ynf0V8kHui3t4=
-github.com/hhrutter/tiff v1.0.0/go.mod h1:zluYmeCkNexc8HFzfc2MTVwA8gcPuFQp/ngjvIQ0CFo=
+github.com/hhrutter/tiff v1.0.1 h1:MIus8caHU5U6823gx7C6jrfoEvfSTGtEFRiM8/LOzC0=
+github.com/hhrutter/tiff v1.0.1/go.mod h1:zU/dNgDm0cMIa8y8YwcYBeuEEveI4B0owqHyiPpJPHc=
 github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0 h1:9GwwkVzUn1vRWAQ8GRu7UOaoM+FZGnvw88DsjyiqfXc=
 github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0/go.mod h1:6U0E76+sB1jTuSSXJjePtLd44vExeoYThOWgOoXo3x8=
 github.com/json-iterator/go v1.1.9/go.mod h1:KdQUCv79m/52Kvf8AW2vK1V8akMuk1QjK/uOdHXbAo4=
