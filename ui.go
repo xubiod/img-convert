@@ -110,6 +110,7 @@ webp        => github.com/chai2010/webp
 blp         => github.com/nielsAD/gowarcraft3/file/blp
 exr         => github.com/mokiat/goexr/exr
 xpm         => github.com/xyproto/xpm
+dotmatrix	=> github.com/kevin-cantwell/dotmatrix
 
 jfif        => internally (i wrote it!)
 
