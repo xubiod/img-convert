@@ -160,6 +160,12 @@ var typeExplainer = map[string]string{
 		"which is available at https://googlesites.inequation.org/tgautilities",
 	"xpm": "package says \"X PixMap (XPM3)\"",
 	"xcf": "package says \"GIMP's XCF format\"",
+	"dotmatrix.txt": "package defines its own spec:\n\n" +
+		"encodes images in a \"dot matrix\" pattern using braille unicode characters. Images are\n" +
+		"first converted to monochrome, then each 2x4 pixel block is coded to an 8-dot braille character.\n" +
+		"In this fashion, an image's entire pixel set can be mapped, one-by-one, to either a \"filled\" or\n" +
+		"\"unfilled\" braille dot. The resulting braille symbols are arranged as lines of text to form a\n" +
+		"representation of the original image.",
 }
 
 var tiffCompressionNames = []string{
