@@ -11,6 +11,7 @@ import (
 	"github.com/blezek/tga"
 	"github.com/hhrutter/tiff"
 	pnm "github.com/jbuchbinder/gopnm"
+	"github.com/kevin-cantwell/dotmatrix"
 	"github.com/samuel/go-pcx/pcx"
 	"github.com/xyproto/xpm"
 	"golang.org/x/image/bmp"
@@ -44,6 +45,8 @@ var ValidOutputTypes = []string{
 	"tga",    // github.com/blezek/tga
 	"xpm",    // github.com/xyproto/xpm
 	"xcf",    // vimagination.zapto.org/limage/xcf
+
+	"dotmatrix.txt", // github.com/kevin-cantwell/dotmatrix
 }
 
 type QualityInformation struct {
@@ -122,6 +125,9 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		err = xpm.Encode(r, decodedImage)
 	case "xcf":
 		err = xcf.Encode(r, decodedImage)
+	case "dotmatrix.txt":
+		var p dotmatrix.Printer = *dotmatrix.NewPrinter(r, &dotmatrix.Config{})
+		err = p.Print(decodedImage)
 	}
 
 	if err != nil {

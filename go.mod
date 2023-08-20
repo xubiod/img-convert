@@ -29,6 +29,7 @@ require (
 	github.com/ericpauley/go-quantize v0.0.0-20200331213906-ae555eb2afa4 // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/hhrutter/lzw v1.0.0 // indirect
+	github.com/kevin-cantwell/dotmatrix v0.0.0-20190516234139-135e8f4a93cd // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/peterhellberg/gfx v0.0.0-20230526095554-e6202e653d52 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
