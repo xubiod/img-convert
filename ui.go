@@ -126,7 +126,8 @@ ase         => github.com/askeladdk/aseprite
 ico         => github.com/mat/besticon/ico
 
 ------------- other libraries -------------
-imgui       => github.com/AllenDang/cimgui-go`
+imgui       => github.com/AllenDang/cimgui-go
+imaging		=> github.com/disintegration/imaging`
 
 var typeExplainer = map[string]string{
 	"png": "as specified by: https://www.w3.org/TR/PNG/",
