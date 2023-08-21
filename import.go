@@ -22,6 +22,7 @@ import (
 	"github.com/samuel/go-pcx/pcx"
 	selfJfif "github.com/xubiod/img-convert/dedicated-decoder/jfif"
 	"golang.org/x/image/bmp"
+	"golang.org/x/image/vp8"
 	"golang.org/x/image/vp8l"
 	"lelux.net/x/image/qoi"
 	"lelux.net/x/image/webp"
@@ -39,6 +40,7 @@ var ValidInputTypes = []string{
 
 	"bmp",  // golang.org/x/image
 	"tiff", // golang.org/x/image
+	"vp8",  // golang.org/x/image
 	"vp8l", // golang.org/x/image
 	"webp", // golang.org/x/image
 
@@ -86,6 +88,11 @@ func Import(filename string) (decodedImage image.Image, err error) {
 		decodedImage, err = tiff.Decode(f)
 	case ".vp8l":
 		decodedImage, err = vp8l.Decode(f)
+	case ".vp8":
+		var decoder *vp8.Decoder = vp8.NewDecoder()
+		fi, _ := f.Stat()
+		decoder.Init(f, int(fi.Size()))
+		decodedImage, err = decoder.DecodeFrame()
 	case ".webp":
 		decodedImage, err = webp.Decode(f)
 	case ".gif":
