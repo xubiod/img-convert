@@ -19,7 +19,7 @@ func FilterItem(index int) {
 	imgui.SameLine()
 
 	imgui.SetNextItemWidth(160)
-	if imgui.BeginCombo(fmt.Sprintf("format%d", index), FilterNames[Filters[index].What]) {
+	if imgui.BeginCombo(fmt.Sprintf("filter%d", index), FilterNames[Filters[index].What]) {
 		for i, val := range FilterNames {
 			if (imgui.SelectableBoolV(val, i == int(Filters[index].What), 0, imgui.Vec2{X: 160, Y: 0})) {
 				Filters[index].What = FilterType(i)
