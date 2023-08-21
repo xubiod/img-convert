@@ -41,7 +41,9 @@ func ApplyFilters(img image.Image) image.Image {
 	for _, value := range Filters {
 		switch value.What {
 		case FilterUpscale:
-			dst = imaging.Resize(dst, dst.Bounds().Dx()*int(value.IntFactor), dst.Bounds().Dy()*int(value.IntFactor), value.Resample)
+			if value.IntFactor > 1 {
+				dst = imaging.Resize(dst, dst.Bounds().Dx()*int(value.IntFactor), dst.Bounds().Dy()*int(value.IntFactor), value.Resample)
+			}
 		case FilterFlipH:
 			dst = imaging.FlipH(img)
 		case FilterFlipV:
