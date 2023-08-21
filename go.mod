@@ -26,6 +26,7 @@ require (
 )
 
 require (
+	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/ericpauley/go-quantize v0.0.0-20200331213906-ae555eb2afa4 // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/hhrutter/lzw v1.0.0 // indirect

@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	imgui "github.com/AllenDang/cimgui-go"
+	"github.com/disintegration/imaging"
 )
 
 type SettingsSavable struct {
@@ -322,6 +323,23 @@ func showConfigurationWindow() {
 
 		default:
 			imgui.TextUnformatted(ValidOutputTypes[selectedFileType] + " doesn't have specific options")
+		}
+	}
+
+	imgui.NewLine()
+
+	if imgui.CollapsingHeaderTreeNodeFlags("manipulations before export") {
+		if imgui.Button("+ filter") {
+			newFilter := new(Filter)
+			newFilter.IntFactor = 1
+			newFilter.Resample = imaging.NearestNeighbor
+			Filters = append(Filters, newFilter)
+		}
+
+		for i := range Filters {
+			if i < len(Filters) {
+				FilterItem(i)
+			}
 		}
 	}
 

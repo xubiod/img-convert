@@ -134,6 +134,10 @@ func Import(filename string) (decodedImage image.Image, err error) {
 		return decodedImage, fmt.Errorf("%s couldn't be decoded (%s), skipping", filename, err.Error())
 	}
 
+	if len(Filters) > 0 {
+		decodedImage = ApplyFilters(decodedImage)
+	}
+
 	_ = f.Close()
 
 	return decodedImage, nil
