@@ -22,6 +22,6 @@ conversion still the main focus. Said filters are:
 - Rotate 180 degrees clockwise
 - Rotate 270 degrees clockwise
 
-More filters for this program are not being considered for implementation.
+More filters for this program are not being considered for implementation as of writing.
 
 Written with <3 in Visual Studio Code and GoLand.
