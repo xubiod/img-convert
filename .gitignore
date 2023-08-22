@@ -2,3 +2,4 @@ bin/
 .DS_Store
 error.log
 .vscode/
+__debug_bin*
