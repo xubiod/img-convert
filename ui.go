@@ -274,6 +274,8 @@ func showConfigurationWindow() {
 	imgui.NewLine()
 
 	if imgui.CollapsingHeaderTreeNodeFlags("export options (defaults to highest quality per method)") {
+		imgui.Indent()
+
 		imgui.TextUnformatted("generic options (for those that support it):")
 
 		imgui.Checkbox("lossless", &opts.Lossless)
@@ -329,11 +331,15 @@ func showConfigurationWindow() {
 		default:
 			imgui.TextUnformatted(ValidOutputTypes[selectedFileType] + " doesn't have specific options")
 		}
+
+		imgui.Unindent()
 	}
 
 	imgui.NewLine()
 
 	if imgui.CollapsingHeaderTreeNodeFlags("manipulations before export") {
+		imgui.Indent()
+
 		if len(Filters) < filterCap && imgui.Button(fmt.Sprintf("+ filter (%d/%d used)", len(Filters), filterCap)) {
 			newFilter := new(Filter)
 			newFilter.IntFactor = 1
@@ -343,11 +349,15 @@ func showConfigurationWindow() {
 			imgui.TextUnformatted(fmt.Sprintf("%d filter cap reached", filterCap))
 		}
 
+		imgui.Indent()
 		for i := range Filters {
 			if i < len(Filters) {
 				FilterItem(i)
 			}
 		}
+		imgui.Unindent()
+
+		imgui.Unindent()
 	}
 
 	imgui.NewLine()

@@ -32,7 +32,7 @@ func FilterItem(index int) {
 	if Filters[index].What == FilterUpscale {
 		imgui.SameLine()
 
-		imgui.SetNextItemWidth(160)
+		imgui.SetNextItemWidth(80)
 		imgui.InputInt(fmt.Sprintf("upscale (%d)", index), &(Filters[index].IntFactor))
 	}
 }
