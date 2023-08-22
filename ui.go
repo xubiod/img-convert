@@ -194,6 +194,10 @@ var (
 	showStyleEdit = false
 )
 
+const (
+	filterCap = 10
+)
+
 func uiLoop() {
 	if showMini {
 		showMiniWindow()
@@ -330,13 +334,13 @@ func showConfigurationWindow() {
 	imgui.NewLine()
 
 	if imgui.CollapsingHeaderTreeNodeFlags("manipulations before export") {
-		if len(Filters) < 10 && imgui.Button("+ filter") {
+		if len(Filters) < filterCap && imgui.Button(fmt.Sprintf("+ filter (%d/%d used)", len(Filters), filterCap)) {
 			newFilter := new(Filter)
 			newFilter.IntFactor = 1
 			newFilter.Resample = imaging.NearestNeighbor
 			Filters = append(Filters, newFilter)
-		} else if len(Filters) >= 10 {
-			imgui.TextUnformatted("10 filter cap reached")
+		} else if len(Filters) >= filterCap {
+			imgui.TextUnformatted(fmt.Sprintf("%d filter cap reached", filterCap))
 		}
 
 		for i := range Filters {
