@@ -330,11 +330,13 @@ func showConfigurationWindow() {
 	imgui.NewLine()
 
 	if imgui.CollapsingHeaderTreeNodeFlags("manipulations before export") {
-		if imgui.Button("+ filter") {
+		if len(Filters) < 10 && imgui.Button("+ filter") {
 			newFilter := new(Filter)
 			newFilter.IntFactor = 1
 			newFilter.Resample = imaging.NearestNeighbor
 			Filters = append(Filters, newFilter)
+		} else if len(Filters) >= 10 {
+			imgui.TextUnformatted("10 filter cap reached")
 		}
 
 		for i := range Filters {
