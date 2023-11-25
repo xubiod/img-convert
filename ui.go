@@ -21,10 +21,10 @@ type SettingsSavable struct {
 var (
 	exporterWaitGroup sync.WaitGroup
 
-	backend         imgui.Backend
+	backend         imgui.Backend[imgui.GLFWWindowFlags]
 	specificBackend imgui.GLFWBackend
-	windowFlags     imgui.GLFWWindowFlags
-	fps             uint = 45
+	//windowFlags     imgui.GLFWWindowFlags
+	fps uint = 45
 
 	errorPopupName = "Whoops!"
 
@@ -430,7 +430,7 @@ func ui() {
 	backend = imgui.CreateBackend(&specificBackend)
 
 	backend.SetBgColor(imgui.NewVec4(0.45, .55, .6, 1.0))
-	backend.CreateWindow("img-convert - dropzone", int(windowSize.X), int(windowSize.Y), windowFlags)
+	backend.CreateWindow("img-convert - dropzone", int(windowSize.X), int(windowSize.Y))
 
 	backend.SetDropCallback(dropOn)
 
