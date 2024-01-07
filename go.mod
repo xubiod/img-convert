@@ -4,12 +4,12 @@ go 1.21
 
 require (
 	github.com/leotaku/mobi v0.5.0
-	golang.org/x/image v0.14.0
+	golang.org/x/image v0.15.0
 )
 
 require (
-	github.com/AllenDang/cimgui-go v0.0.0-20231124093108-2be2c77051cf
-	github.com/askeladdk/aseprite v0.0.3
+	github.com/AllenDang/cimgui-go v0.0.0-20231219093052-24bd5dc22643
+	github.com/askeladdk/aseprite v0.0.4
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
 	github.com/chai2010/webp v1.1.1
@@ -33,8 +33,10 @@ require (
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/peterhellberg/gfx v0.0.0-20230908181254-9885a9f73abe // indirect
 	github.com/x448/float16 v0.8.4 // indirect
-	github.com/xyproto/burnpal v0.0.0-20191014132200-bd9858647795 // indirect
-	github.com/xyproto/palgen v1.5.0 // indirect
+	github.com/xyproto/burnpal v1.0.0 // indirect
+	github.com/xyproto/palgen v1.5.1 // indirect
+	golang.org/x/sys v0.7.0 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 	vimagination.zapto.org/byteio v1.0.5 // indirect
 	vimagination.zapto.org/memio v1.0.0 // indirect
 	vimagination.zapto.org/parser v1.0.2 // indirect
