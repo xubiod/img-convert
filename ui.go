@@ -82,8 +82,8 @@ var (
 )
 
 const credit string = `credits n stuff
-overall program by xubiod 2023
-made with go 1.20.5
+overall program by xubiod 2023-24
+made with go 1.20.5 - 1.22.0
 
 libraries used are from imports
 
