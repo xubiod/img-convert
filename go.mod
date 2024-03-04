@@ -21,6 +21,7 @@ require (
 	github.com/nielsAD/gowarcraft3 v1.7.1
 	github.com/oov/psd v0.0.0-20220121172623-5db5eafcecbb
 	github.com/samuel/go-pcx v0.0.0-20210515040514-6a5ce4d132f7
+	github.com/sugyan/ttygif v0.0.0-20160926114937-b539f0e7d1a9
 	github.com/xyproto/xpm v1.3.0
 	lelux.net/x v0.0.0-20230507130254-6b0313b1b0e9
 	vimagination.zapto.org/limage v1.0.0
@@ -32,7 +33,6 @@ require (
 	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/peterhellberg/gfx v0.0.0-20230908181254-9885a9f73abe // indirect
-	github.com/sugyan/ttygif v0.0.0-20160926114937-b539f0e7d1a9 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xyproto/burnpal v1.0.0 // indirect
 	github.com/xyproto/palgen v1.5.1 // indirect
