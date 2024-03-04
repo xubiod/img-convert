@@ -20,6 +20,7 @@ import (
 	"github.com/nielsAD/gowarcraft3/file/blp"
 	"github.com/oov/psd"
 	"github.com/samuel/go-pcx/pcx"
+	"github.com/sugyan/ttygif/image/xwd"
 	selfJfif "github.com/xubiod/img-convert/dedicated-decoder/jfif"
 	"golang.org/x/image/bmp"
 	"golang.org/x/image/vp8"
@@ -58,6 +59,7 @@ var ValidInputTypes = []string{
 	"ase",      // github.com/askeladdk/aseprite
 	"aseprite", // github.com/askeladdk/aseprite
 	"ico",      // github.com/mat/besticon/ico
+	"xwd",      // github.com/sugyan/ttygif/image/xwd
 
 	"jfif", // self
 }
@@ -127,6 +129,8 @@ func Import(filename string) (decodedImage image.Image, err error) {
 		decodedImage, err = aseprite.Decode(f)
 	case ".ico":
 		decodedImage, err = ico.Decode(f)
+	case ".xwd":
+		decodedImage, err = xwd.Decode(f)
 	}
 
 	if err != nil {

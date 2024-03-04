@@ -32,6 +32,7 @@ require (
 	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/peterhellberg/gfx v0.0.0-20230908181254-9885a9f73abe // indirect
+	github.com/sugyan/ttygif v0.0.0-20160926114937-b539f0e7d1a9 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xyproto/burnpal v1.0.0 // indirect
 	github.com/xyproto/palgen v1.5.1 // indirect

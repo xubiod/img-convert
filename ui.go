@@ -124,6 +124,7 @@ jfif        => github.com/leotaku/mobi/jfif
 psd         => github.com/oov/psd
 ase         => github.com/askeladdk/aseprite
 ico         => github.com/mat/besticon/ico
+xwd			=> github.com/sugyan/ttygif/image/xwd
 
 ------------- other libraries -------------
 imgui       => github.com/AllenDang/cimgui-go`
