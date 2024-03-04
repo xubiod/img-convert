@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"sync"
 
@@ -349,11 +350,11 @@ func showMiniWindow() {
 	imgui.BeginV("imgui builtin", &showMini, imgui.WindowFlagsNone)
 	imgui.Checkbox("about", &showAbout)
 	imgui.Checkbox("demo", &showDemo)
-	imgui.Checkbox("debuglog", &showDebugLog)
+	imgui.Checkbox("debug log", &showDebugLog)
 	imgui.Checkbox("metrics", &showMetrics)
-	imgui.Checkbox("stacktool", &showStackTool)
-	imgui.Checkbox("styleedit", &showStyleEdit)
-	imgui.Checkbox("userguide", &showUserGuide)
+	imgui.Checkbox("id stack tool", &showStackTool)
+	imgui.Checkbox("style edit", &showStyleEdit)
+	imgui.Checkbox("user guide", &showUserGuide)
 
 	if showAbout {
 		imgui.ShowAboutWindowV(&showAbout)
@@ -372,7 +373,7 @@ func showMiniWindow() {
 	}
 
 	if showStackTool {
-		imgui.ShowStackToolWindowV(&showStackTool)
+		imgui.ShowIDStackToolWindowV(&showStackTool)
 	}
 
 	if showStyleEdit {
@@ -426,11 +427,17 @@ func dropOn(p []string) {
 }
 
 func ui() {
+	var err error
+
 	specificBackend = *imgui.NewGLFWBackend()
-	backend = imgui.CreateBackend(&specificBackend)
+	backend, err = imgui.CreateBackend(&specificBackend)
+
+	if errors.Is(err, imgui.CExposerError) {
+		fmt.Println("c exposer error! acknowledge that it *could* still work but no guarantees")
+	}
 
 	backend.SetBgColor(imgui.NewVec4(0.45, .55, .6, 1.0))
-	backend.CreateWindow("img-convert - dropzone", int(windowSize.X), int(windowSize.Y))
+	backend.CreateWindow("img-convert - drop zone", int(windowSize.X), int(windowSize.Y))
 
 	backend.SetDropCallback(dropOn)
 

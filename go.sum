@@ -1,5 +1,5 @@
-github.com/AllenDang/cimgui-go v0.0.0-20240219164318-ef715f47b06e h1:ck8897n1951BU2VuJIAfuGVqMdfUliUTL/x9NyrCyjA=
-github.com/AllenDang/cimgui-go v0.0.0-20240219164318-ef715f47b06e/go.mod h1:e6feXR4FrATVY/UrWS3si3KCJOm0wruwbxVI/B85fUM=
+github.com/AllenDang/cimgui-go v0.0.0-20240303223020-2c7d7a8d1731 h1:8ndvCvMh+pgvSnsNCt8/08nVPb2JlAiHdzCrubeJKJY=
+github.com/AllenDang/cimgui-go v0.0.0-20240303223020-2c7d7a8d1731/go.mod h1:e6feXR4FrATVY/UrWS3si3KCJOm0wruwbxVI/B85fUM=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/andybalholm/brotli v1.0.4/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
 github.com/andybalholm/cascadia v1.3.1/go.mod h1:R4bJ1UQfqADjvDa4P6HZHLh/3OxWWEqc0Sk8XGwHqvA=
