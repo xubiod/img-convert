@@ -1,6 +1,6 @@
 module github.com/xubiod/img-convert
 
-go 1.22.0
+go 1.22.2
 
 require (
 	github.com/leotaku/mobi v0.5.0
@@ -8,7 +8,7 @@ require (
 )
 
 require (
-	github.com/AllenDang/cimgui-go v0.0.0-20240303223020-2c7d7a8d1731
+	github.com/AllenDang/cimgui-go v0.0.0-20240324100345-e81e703b7b87
 	github.com/askeladdk/aseprite v0.0.4
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
@@ -36,7 +36,7 @@ require (
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xyproto/burnpal v1.0.0 // indirect
 	github.com/xyproto/palgen v1.5.1 // indirect
-	golang.org/x/sys v0.17.0 // indirect
+	golang.org/x/sys v0.19.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	vimagination.zapto.org/byteio v1.0.5 // indirect
 	vimagination.zapto.org/memio v1.0.0 // indirect
