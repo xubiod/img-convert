@@ -64,11 +64,11 @@ var ValidInputTypes = []string{
 	"jfif", // self
 }
 
-func Import(filename string) (decodedImage image.Image, err error) {
+func Import(filename string) (imported image.Image, err error) {
 	f, err := os.Open(filename)
 	if err != nil {
 		_ = f.Close()
-		return decodedImage, fmt.Errorf("%s couldn't be opened, skipping (%s)", filename, err.Error())
+		return imported, fmt.Errorf("%s couldn't be opened, skipping (%s)", filename, err.Error())
 	}
 
 	inputValid := false
@@ -80,65 +80,85 @@ func Import(filename string) (decodedImage image.Image, err error) {
 
 	if !inputValid {
 		_ = f.Close()
-		return decodedImage, fmt.Errorf("%s is not a valid input, skipping", filename)
+		return imported, fmt.Errorf("%s is not a valid input, skipping", filename)
 	}
 
 	switch strings.ToLower(filepath.Ext(filename)) {
 	case ".bmp":
-		decodedImage, err = bmp.Decode(f)
+		imported, err = bmp.Decode(f)
+
 	case ".tiff":
-		decodedImage, err = tiff.Decode(f)
+		imported, err = tiff.Decode(f)
+
 	case ".vp8l":
-		decodedImage, err = vp8l.Decode(f)
+		imported, err = vp8l.Decode(f)
+
 	case ".vp8":
 		var decoder *vp8.Decoder = vp8.NewDecoder()
 		fi, _ := f.Stat()
 		decoder.Init(f, int(fi.Size()))
-		decodedImage, err = decoder.DecodeFrame()
+		imported, err = decoder.DecodeFrame()
+
 	case ".webp":
-		decodedImage, err = webp.Decode(f)
+		imported, err = webp.Decode(f)
+
 	case ".gif":
-		decodedImage, err = gif.Decode(f)
+		imported, err = gif.Decode(f)
+
 	case ".jpg", ".jpeg":
-		decodedImage, err = jpeg.Decode(f)
+		imported, err = jpeg.Decode(f)
+
 	case ".png":
-		decodedImage, err = png.Decode(f)
+		imported, err = png.Decode(f)
+
 	case ".jfif":
-		decodedImage, err = selfJfif.Decode(f)
+		imported, err = selfJfif.Decode(f)
+
 	case ".pbm", ".pgm", ".ppm":
-		decodedImage, err = pnm.Decode(f)
+		imported, err = pnm.Decode(f)
+
 	case ".pcx":
-		decodedImage, err = pcx.Decode(f)
+		imported, err = pcx.Decode(f)
+
 	case ".blp":
-		decodedImage, err = blp.Decode(f)
+		imported, err = blp.Decode(f)
+
 	case ".exr":
-		decodedImage, err = exr.Decode(f)
+		imported, err = exr.Decode(f)
+
 	case ".megasd":
-		decodedImage, err = megaSD.Decode(f)
+		imported, err = megaSD.Decode(f)
+
 	case ".qoi":
-		decodedImage, err = qoi.Decode(f)
+		imported, err = qoi.Decode(f)
+
 	case ".tga":
-		decodedImage, err = tga.Decode(f)
+		imported, err = tga.Decode(f)
+
 	case ".xcf":
-		decodedImage, err = xcf.Decode(f)
+		imported, err = xcf.Decode(f)
+
 	case ".psd":
 		var psdResult *psd.PSD
 		psdResult, _, err = psd.Decode(f, nil)
-		decodedImage = psdResult.Picker
+		imported = psdResult.Picker
+
 	case ".ase", ".aseprite":
-		decodedImage, err = aseprite.Decode(f)
+		imported, err = aseprite.Decode(f)
+
 	case ".ico":
-		decodedImage, err = ico.Decode(f)
+		imported, err = ico.Decode(f)
+
 	case ".xwd":
-		decodedImage, err = xwd.Decode(f)
+		imported, err = xwd.Decode(f)
 	}
 
 	if err != nil {
 		_ = f.Close()
-		return decodedImage, fmt.Errorf("%s couldn't be decoded (%s), skipping", filename, err.Error())
+		return imported, fmt.Errorf("%s couldn't be decoded (%s), skipping", filename, err.Error())
 	}
 
 	_ = f.Close()
 
-	return decodedImage, nil
+	return imported, nil
 }
