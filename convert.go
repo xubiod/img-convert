@@ -60,7 +60,7 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	fmt.Printf("starting %s\n", filename)
 
 	if (filepath.Ext(filename) == "."+outputFileType) && !overrideSameTypeSkip {
-		return fmt.Errorf("%s already outout type, skipping", filename)
+		return fmt.Errorf("%s already output type, skipping", filename)
 	}
 
 	if _, err := os.Stat(filename + "." + outputFileType); err == nil && !overwriteFiles {
