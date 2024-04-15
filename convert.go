@@ -67,7 +67,7 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 		return fmt.Errorf("%s already exists, skipping", filename+"."+outputFileType)
 	}
 
-	decodedImage, err := Import(filename)
+	imported, err := Import(filename)
 
 	if err != nil {
 		return fmt.Errorf("%s import failed, skipping (%s)", filename, err.Error())
@@ -81,53 +81,59 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	switch outputFileType {
 	case "bmp":
-		err = bmp.Encode(r, decodedImage)
+		err = bmp.Encode(r, imported)
+
 	case "tiff":
-		err = tiff.Encode(r, decodedImage, &tiff.Options{
-			Compression: tiff.CompressionType(quality.Quality),
-			Predictor:   quality.TiffPredictor,
+		err = tiff.Encode(r, imported, &tiff.Options{
+			Compression: tiff.CompressionType(quality.Quality), Predictor: quality.TiffPredictor,
 		})
+
 	case "gif":
-		err = gif.Encode(r, decodedImage, &gif.Options{
-			NumColors: quality.Quality,
-		})
+		err = gif.Encode(r, imported, &gif.Options{NumColors: quality.Quality})
+
 	case "jpeg", "jpg":
-		err = jpeg.Encode(r, decodedImage, &jpeg.Options{
-			Quality: quality.Quality,
-		})
+		err = jpeg.Encode(r, imported, &jpeg.Options{Quality: quality.Quality})
+
 	case "png":
-		err = png.Encode(r, decodedImage)
+		err = png.Encode(r, imported)
+
 	case "jfif":
-		err = jfif.Encode(r, decodedImage, &jpeg.Options{
-			Quality: quality.Quality,
-		})
+		err = jfif.Encode(r, imported, &jpeg.Options{Quality: quality.Quality})
+
 	case "webp":
-		err = webp.Encode(r, decodedImage, &webp.Options{
-			Quality:  float32(quality.Quality),
-			Lossless: quality.Lossless,
-			Exact:    quality.WebpExact,
+		err = webp.Encode(r, imported, &webp.Options{
+			Quality: float32(quality.Quality), Lossless: quality.Lossless, Exact: quality.WebpExact,
 		})
+
 	case "pbm":
-		err = pnm.Encode(r, decodedImage, pnm.PBM)
+		err = pnm.Encode(r, imported, pnm.PBM)
+
 	case "pgm":
-		err = pnm.Encode(r, decodedImage, pnm.PGM)
+		err = pnm.Encode(r, imported, pnm.PGM)
+
 	case "ppm":
-		err = pnm.Encode(r, decodedImage, pnm.PPM)
+		err = pnm.Encode(r, imported, pnm.PPM)
+
 	case "pcx":
-		err = pcx.Encode(r, decodedImage)
+		err = pcx.Encode(r, imported)
+
 	case "megasd":
-		err = megaSD.Encode(r, decodedImage)
+		err = megaSD.Encode(r, imported)
+
 	case "qoi":
-		err = qoi.Encode(r, decodedImage)
+		err = qoi.Encode(r, imported)
+
 	case "tga":
-		err = tga.Encode(r, decodedImage)
+		err = tga.Encode(r, imported)
+
 	case "xpm":
-		err = xpm.Encode(r, decodedImage)
+		err = xpm.Encode(r, imported)
+
 	case "xcf":
-		err = xcf.Encode(r, decodedImage)
+		err = xcf.Encode(r, imported)
+
 	case "dotmatrix.txt":
-		var p dotmatrix.Printer = *dotmatrix.NewPrinter(r, &dotmatrix.Config{})
-		err = p.Print(decodedImage)
+		err = (*dotmatrix.NewPrinter(r, &dotmatrix.Config{})).Print(imported)
 	}
 
 	if err != nil {
