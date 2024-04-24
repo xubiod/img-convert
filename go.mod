@@ -8,7 +8,7 @@ require (
 )
 
 require (
-	github.com/AllenDang/cimgui-go v0.0.0-20240324100345-e81e703b7b87
+	github.com/AllenDang/cimgui-go v0.0.0-20240424060053-bf9eb0554f38
 	github.com/askeladdk/aseprite v0.0.4
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
