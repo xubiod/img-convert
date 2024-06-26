@@ -4,7 +4,7 @@ go 1.22.2
 
 require (
 	github.com/leotaku/mobi v0.5.0
-	golang.org/x/image v0.15.0
+	golang.org/x/image v0.18.0
 )
 
 require (
