@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"image"
 	"image/gif"
 	"image/jpeg"
 	"image/png"
+	"io"
 	"os"
 	"path/filepath"
 
@@ -49,6 +51,16 @@ var ValidOutputTypes = []string{
 	"dotmatrix.txt", // github.com/kevin-cantwell/dotmatrix
 }
 
+var genericExporters = map[string]func(io.Writer, image.Image) error{
+	"bmp":    bmp.Encode,
+	"png":    png.Encode,
+	"pcx":    pcx.Encode,
+	"megasd": megaSD.Encode,
+	"qoi":    qoi.Encode,
+	"tga":    tga.Encode,
+	"xpm":    xpm.Encode,
+}
+
 type QualityInformation struct {
 	Lossless      bool
 	Quality       int
@@ -80,9 +92,6 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	}
 
 	switch outputFileType {
-	case "bmp":
-		err = bmp.Encode(r, imported)
-
 	case "tiff":
 		err = tiff.Encode(r, imported, &tiff.Options{
 			Compression: tiff.CompressionType(quality.Quality), Predictor: quality.TiffPredictor,
@@ -93,9 +102,6 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	case "jpeg", "jpg":
 		err = jpeg.Encode(r, imported, &jpeg.Options{Quality: quality.Quality})
-
-	case "png":
-		err = png.Encode(r, imported)
 
 	case "jfif":
 		err = jfif.Encode(r, imported, &jpeg.Options{Quality: quality.Quality})
@@ -114,26 +120,14 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 	case "ppm":
 		err = pnm.Encode(r, imported, pnm.PPM)
 
-	case "pcx":
-		err = pcx.Encode(r, imported)
-
-	case "megasd":
-		err = megaSD.Encode(r, imported)
-
-	case "qoi":
-		err = qoi.Encode(r, imported)
-
-	case "tga":
-		err = tga.Encode(r, imported)
-
-	case "xpm":
-		err = xpm.Encode(r, imported)
-
 	case "xcf":
 		err = xcf.Encode(r, imported)
 
 	case "dotmatrix.txt":
 		err = (*dotmatrix.NewPrinter(r, &dotmatrix.Config{})).Print(imported)
+
+	_:
+		err = genericExporters[outputFileType](r, imported)
 	}
 
 	if err != nil {

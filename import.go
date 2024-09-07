@@ -6,6 +6,7 @@ import (
 	"image/gif"
 	"image/jpeg"
 	"image/png"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -64,6 +65,31 @@ var ValidInputTypes = []string{
 	"jfif", // self
 }
 
+var genericImporters = map[string]func(io.Reader) (image.Image, error){
+	".bmp":      bmp.Decode,
+	".tiff":     tiff.Decode,
+	".vp8l":     vp8l.Decode,
+	".webp":     webp.Decode,
+	".gif":      gif.Decode,
+	".jpg":      jpeg.Decode,
+	".jpeg":     jpeg.Decode,
+	".png":      png.Decode,
+	".jfif":     selfJfif.Decode,
+	".pbm":      pnm.Decode,
+	".pgm":      pnm.Decode,
+	".ppm":      pnm.Decode,
+	".pcx":      pcx.Decode,
+	".blp":      blp.Decode,
+	".exr":      exr.Decode,
+	".megasd":   megaSD.Decode,
+	".qoi":      qoi.Decode,
+	".tga":      tga.Decode,
+	".ase":      aseprite.Decode,
+	".aseprite": aseprite.Decode,
+	".ico":      ico.Decode,
+	".xwd":      xwd.Decode,
+}
+
 func Import(filename string) (imported image.Image, err error) {
 	f, err := os.Open(filename)
 	if err != nil {
@@ -83,57 +109,14 @@ func Import(filename string) (imported image.Image, err error) {
 		return imported, fmt.Errorf("%s is not a valid input, skipping", filename)
 	}
 
-	switch strings.ToLower(filepath.Ext(filename)) {
-	case ".bmp":
-		imported, err = bmp.Decode(f)
+	ext := strings.ToLower(filepath.Ext(filename))
 
-	case ".tiff":
-		imported, err = tiff.Decode(f)
-
-	case ".vp8l":
-		imported, err = vp8l.Decode(f)
-
+	switch ext {
 	case ".vp8":
 		var decoder *vp8.Decoder = vp8.NewDecoder()
 		fi, _ := f.Stat()
 		decoder.Init(f, int(fi.Size()))
 		imported, err = decoder.DecodeFrame()
-
-	case ".webp":
-		imported, err = webp.Decode(f)
-
-	case ".gif":
-		imported, err = gif.Decode(f)
-
-	case ".jpg", ".jpeg":
-		imported, err = jpeg.Decode(f)
-
-	case ".png":
-		imported, err = png.Decode(f)
-
-	case ".jfif":
-		imported, err = selfJfif.Decode(f)
-
-	case ".pbm", ".pgm", ".ppm":
-		imported, err = pnm.Decode(f)
-
-	case ".pcx":
-		imported, err = pcx.Decode(f)
-
-	case ".blp":
-		imported, err = blp.Decode(f)
-
-	case ".exr":
-		imported, err = exr.Decode(f)
-
-	case ".megasd":
-		imported, err = megaSD.Decode(f)
-
-	case ".qoi":
-		imported, err = qoi.Decode(f)
-
-	case ".tga":
-		imported, err = tga.Decode(f)
 
 	case ".xcf":
 		imported, err = xcf.Decode(f)
@@ -143,14 +126,8 @@ func Import(filename string) (imported image.Image, err error) {
 		psdResult, _, err = psd.Decode(f, nil)
 		imported = psdResult.Picker
 
-	case ".ase", ".aseprite":
-		imported, err = aseprite.Decode(f)
-
-	case ".ico":
-		imported, err = ico.Decode(f)
-
-	case ".xwd":
-		imported, err = xwd.Decode(f)
+	_:
+		imported, err = genericImporters[ext](f)
 	}
 
 	if err != nil {
