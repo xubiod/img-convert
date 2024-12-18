@@ -3,9 +3,14 @@ package main
 import (
 	"errors"
 	"fmt"
+	"runtime"
 	"sync"
 
-	imgui "github.com/AllenDang/cimgui-go"
+	bknd "github.com/AllenDang/cimgui-go/backend"
+	"github.com/AllenDang/cimgui-go/backend/glfwbackend"
+	"github.com/AllenDang/cimgui-go/imgui"
+
+	"github.com/AllenDang/cimgui-go/imguizmo"
 )
 
 type SettingsSavable struct {
@@ -22,8 +27,8 @@ type SettingsSavable struct {
 var (
 	exporterWaitGroup sync.WaitGroup
 
-	backend         imgui.Backend[imgui.GLFWWindowFlags]
-	specificBackend imgui.GLFWBackend
+	// backend         imgui.Backend[imgui.GLFWWindowFlags]
+	backend bknd.Backend[glfwbackend.GLFWWindowFlags]
 	//windowFlags     imgui.GLFWWindowFlags
 	fps uint = 45
 
@@ -195,6 +200,7 @@ var (
 )
 
 func uiLoop() {
+	imguizmo.BeginFrame()
 	if showMini {
 		showMiniWindow()
 	}
@@ -430,10 +436,9 @@ func dropOn(p []string) {
 func ui() {
 	var err error
 
-	specificBackend = *imgui.NewGLFWBackend()
-	backend, err = imgui.CreateBackend(&specificBackend)
+	backend, err = bknd.CreateBackend(glfwbackend.NewGLFWBackend())
 
-	if errors.Is(err, imgui.CExposerError) {
+	if errors.Is(err, bknd.CExposerError) {
 		fmt.Println("c exposer error! acknowledge that it *could* still work but no guarantees")
 	}
 
@@ -446,6 +451,10 @@ func ui() {
 	backend.SetTargetFPS(fps)
 
 	backend.Run(uiLoop)
+}
+
+func init() {
+	runtime.LockOSThread()
 }
 
 func main() {
