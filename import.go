@@ -29,6 +29,8 @@ import (
 	"lelux.net/x/image/qoi"
 	"lelux.net/x/image/webp"
 	"vimagination.zapto.org/limage/xcf"
+
+	"github.com/gen2brain/jpegxl"
 )
 
 // ValidInputTypes
@@ -73,6 +75,7 @@ var genericImporters = map[string]func(io.Reader) (image.Image, error){
 	".gif":      gif.Decode,
 	".jpg":      jpeg.Decode,
 	".jpeg":     jpeg.Decode,
+	".jxl":      jpegxl.Decode,
 	".png":      png.Decode,
 	".jfif":     selfJfif.Decode,
 	".pbm":      pnm.Decode,

@@ -1,6 +1,6 @@
 module github.com/xubiod/img-convert
 
-go 1.23.1
+go 1.23.4
 
 require (
 	github.com/leotaku/mobi v0.5.0
@@ -29,8 +29,10 @@ require (
 
 require (
 	github.com/BurntSushi/toml v1.0.0 // indirect
+	github.com/ebitengine/purego v0.8.1 // indirect
 	github.com/ericpauley/go-quantize v0.0.0-20200331213906-ae555eb2afa4 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
+	github.com/gen2brain/jpegxl v0.4.3 // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
@@ -44,6 +46,7 @@ require (
 	github.com/spf13/cobra v1.2.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/sugyan/ttyread v0.0.0-20140728103301-67501e8d8a3b // indirect
+	github.com/tetratelabs/wazero v1.8.1 // indirect
 	github.com/vchimishuk/chub v0.0.0-20190501162134-36f1f5f7c9ef // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xyproto/burnpal v1.0.0 // indirect

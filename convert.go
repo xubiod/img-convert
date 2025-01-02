@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 
 	"github.com/blezek/tga"
+	"github.com/gen2brain/jpegxl"
 	"github.com/hhrutter/tiff"
 	pnm "github.com/jbuchbinder/gopnm"
 	"github.com/kevin-cantwell/dotmatrix"
@@ -36,6 +37,7 @@ var ValidOutputTypes = []string{
 	"bmp",  // golang.org/x/image
 	"tiff", // golang.org/x/image
 
+	"jxl",    // github.com/gen2brain/jpegxl
 	"jfif",   // github.com/leotaku/mobi/jfif
 	"webp",   // github.com/chai2010/webp
 	"pbm",    // github.com/jbuchbinder/gopnm
@@ -66,6 +68,7 @@ type QualityInformation struct {
 	Quality       int
 	WebpExact     bool
 	TiffPredictor bool
+	JpegXLEffort  int
 }
 
 func ConvertTo(filename string, outputFileType string, quality QualityInformation, overrideSameTypeSkip bool, overwriteFiles bool) (err error) {
@@ -105,6 +108,9 @@ func ConvertTo(filename string, outputFileType string, quality QualityInformatio
 
 	case "jfif":
 		err = jfif.Encode(r, imported, &jpeg.Options{Quality: quality.Quality})
+
+	case "jxl":
+		err = jpegxl.Encode(r, imported, jpegxl.Options{Quality: quality.Quality, Effort: quality.JpegXLEffort})
 
 	case "webp":
 		err = webp.Encode(r, imported, &webp.Options{

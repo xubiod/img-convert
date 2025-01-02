@@ -22,6 +22,8 @@ type SettingsSavable struct {
 	GifColors       int32
 	TiffCompression int32
 	TiffPredictor   bool
+
+	JpegXLEffort int32
 }
 
 var (
@@ -55,6 +57,8 @@ var (
 		GifColors:       256,
 		TiffCompression: 0,
 		TiffPredictor:   false,
+
+		JpegXLEffort: 7,
 	}
 
 	skipSameTypeTooltip = "if checked, the converter will skip loading and converting files\n" +
@@ -84,11 +88,14 @@ var (
 
 	qualityTooltip = "supported by: jpeg, webp, jfif\n\n" +
 		"0%% is worst, 100%% is best"
+
+	jpegXLEffortTooltip = "supported by: jpeg-xl\n\n" +
+		"indictates to the encoder what effort/speed level to use"
 )
 
 const credit string = `credits n stuff
-overall program by xubiod 2023-24
-made with go 1.20.5 - 1.22.0
+overall program by xubiod 2023-25
+made with go 1.20.5 - 1.23.4
 
 libraries used are from imports
 
@@ -109,6 +116,7 @@ qoi         => lelux.net/x/image/qoi
 tga         => github.com/blezek/tga
 xcf         => vimagination.zapto.org/limage/xcf
 tiff        => github.com/hhrutter/tiff
+jxl			=> github.com/gen2brain/jpegxl
 
 ------------ encoder libraries ------------
 ---------- (allowed file output) ----------
@@ -149,6 +157,10 @@ var typeExplainer = map[string]string{
 	"jfif": "package doesn't list a spec\n\n" +
 		"the jfif header is baked into the package used, and can't be modified\n" +
 		"all available options are given to you to modify (compat. w/ jpeg)",
+
+	"jxl": "as specified by: https://jpeg.org/jpegxl/\n\n" +
+		"all available options are given to you to modify",
+
 	"webp": "as specified by: https://developers.google.com/speed/webp/docs/riff_container\n\n" +
 		"all available options are given to you to modify",
 	"pbm": "package doesn't list a spec\n\n" +
@@ -328,6 +340,12 @@ func showConfigurationWindow() {
 				imgui.SetTooltip(exactTooltip)
 			}
 
+		case "jxl":
+			imgui.SliderInt("jxl effort", &opts.JpegXLEffort, 1, 10)
+			if imgui.IsItemHovered() {
+				imgui.SetTooltip(jpegXLEffortTooltip)
+			}
+
 		default:
 			imgui.TextUnformatted(ValidOutputTypes[selectedFileType] + " doesn't have specific options")
 		}
@@ -418,6 +436,7 @@ func dropOn(p []string) {
 				Quality:       genericQuality,
 				TiffPredictor: opts.TiffPredictor,
 				WebpExact:     opts.WebpExact,
+				JpegXLEffort:  int(opts.JpegXLEffort),
 			}, !opts.SkipSameType, opts.OverwriteFiles)
 
 			if err != nil {
