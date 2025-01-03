@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"runtime"
+	"slices"
 	"sync"
 
 	bknd "github.com/AllenDang/cimgui-go/backend"
@@ -60,6 +61,8 @@ var (
 
 		JpegXLEffort: 7,
 	}
+
+	showAllSpecialty = false
 
 	skipSameTypeTooltip = "if checked, the converter will skip loading and converting files\n" +
 		"that are the same type as the output, i.e. skipping png => png\n\n" +
@@ -211,6 +214,56 @@ var (
 	showStyleEdit = false
 )
 
+var special_options map[string]func() = map[string]func(){
+	"gif": func() {
+		imgui.SliderInt("gif colors", &opts.GifColors, 1, 256)
+		if imgui.IsItemHovered() {
+			imgui.SetTooltip(gifColorTooltip)
+		}
+	},
+
+	"tiff": func() {
+		imgui.BeginListBoxV("tiff compression type", imgui.Vec2{Y: 87})
+		var i int32 = 0
+		for i = 0; i < int32(len(tiffCompressionNames)); i++ {
+			isSelected := opts.TiffCompression == i
+			if imgui.SelectableBoolPtr(tiffCompressionNames[i], &isSelected) {
+				opts.TiffCompression = i
+			}
+
+			if isSelected {
+				imgui.SetItemDefaultFocus()
+			}
+
+			if imgui.IsItemHovered() {
+				imgui.SetTooltip(tiffCompressionTooltips[i])
+			}
+		}
+		imgui.EndListBox()
+
+		imgui.Checkbox("tiff predictor", &opts.TiffPredictor)
+		if imgui.IsItemHovered() {
+			imgui.SetTooltip(tiffPredictorTooltip)
+		}
+	},
+
+	"webp": func() {
+		imgui.Checkbox("webp exact", &opts.WebpExact)
+		if imgui.IsItemHovered() {
+			imgui.SetTooltip(exactTooltip)
+		}
+	},
+
+	"jxl": func() {
+		imgui.SliderInt("jxl effort", &opts.JpegXLEffort, 1, 10)
+		if imgui.IsItemHovered() {
+			imgui.SetTooltip(jpegXLEffortTooltip)
+		}
+	},
+}
+
+var special_options_keys []string
+
 func uiLoop() {
 	imguizmo.BeginFrame()
 	if showMini {
@@ -288,7 +341,9 @@ func showConfigurationWindow() {
 	imgui.NewLine()
 
 	if imgui.CollapsingHeaderTreeNodeFlags("export options (defaults to highest quality per method)") {
-		imgui.TextUnformatted("generic options (for those that support it):")
+		// imgui.TextUnformatted("generic options (for those that support it):")
+
+		imgui.Checkbox("show all", &showAllSpecialty)
 
 		imgui.Checkbox("lossless", &opts.Lossless)
 		if imgui.IsItemHovered() {
@@ -303,51 +358,12 @@ func showConfigurationWindow() {
 		imgui.NewLine()
 		imgui.TextUnformatted("specific options:")
 
-		switch ValidOutputTypes[selectedFileType] {
-		case "gif":
-			imgui.SliderInt("gif colors", &opts.GifColors, 1, 256)
-			if imgui.IsItemHovered() {
-				imgui.SetTooltip(gifColorTooltip)
+		if f, ok := special_options[ValidOutputTypes[selectedFileType]]; ok && !showAllSpecialty {
+			f()
+		} else if showAllSpecialty {
+			for k_idx := range len(special_options_keys) {
+				special_options[special_options_keys[k_idx]]()
 			}
-
-		case "tiff":
-			imgui.BeginListBoxV("tiff compression type", imgui.Vec2{Y: 87})
-			var i int32 = 0
-			for i = 0; i < int32(len(tiffCompressionNames)); i++ {
-				isSelected := opts.TiffCompression == i
-				if imgui.SelectableBoolPtr(tiffCompressionNames[i], &isSelected) {
-					opts.TiffCompression = i
-				}
-
-				if isSelected {
-					imgui.SetItemDefaultFocus()
-				}
-
-				if imgui.IsItemHovered() {
-					imgui.SetTooltip(tiffCompressionTooltips[i])
-				}
-			}
-			imgui.EndListBox()
-
-			imgui.Checkbox("tiff predictor", &opts.TiffPredictor)
-			if imgui.IsItemHovered() {
-				imgui.SetTooltip(tiffPredictorTooltip)
-			}
-
-		case "webp":
-			imgui.Checkbox("webp exact", &opts.WebpExact)
-			if imgui.IsItemHovered() {
-				imgui.SetTooltip(exactTooltip)
-			}
-
-		case "jxl":
-			imgui.SliderInt("jxl effort", &opts.JpegXLEffort, 1, 10)
-			if imgui.IsItemHovered() {
-				imgui.SetTooltip(jpegXLEffortTooltip)
-			}
-
-		default:
-			imgui.TextUnformatted(ValidOutputTypes[selectedFileType] + " doesn't have specific options")
 		}
 	}
 
@@ -454,6 +470,13 @@ func dropOn(p []string) {
 
 func ui() {
 	var err error
+
+	special_options_keys = make([]string, 0)
+	for k := range special_options {
+		special_options_keys = append(special_options_keys, k)
+	}
+
+	slices.Sort(special_options_keys)
 
 	backend, err = bknd.CreateBackend(glfwbackend.NewGLFWBackend())
 
