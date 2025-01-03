@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/askeladdk/aseprite"
+	ase "github.com/askeladdk/aseprite"
 	"github.com/blezek/tga"
 	megaSD "github.com/bodgit/megasd/image"
 	"github.com/hhrutter/tiff"
@@ -87,8 +87,8 @@ var genericImporters = map[string]func(io.Reader) (image.Image, error){
 	".megasd":   megaSD.Decode,
 	".qoi":      qoi.Decode,
 	".tga":      tga.Decode,
-	".ase":      aseprite.Decode,
-	".aseprite": aseprite.Decode,
+	".ase":      ase.Decode,
+	".aseprite": ase.Decode,
 	".ico":      ico.Decode,
 	".xwd":      xwd.Decode,
 }
