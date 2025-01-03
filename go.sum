@@ -1,5 +1,7 @@
 github.com/AllenDang/cimgui-go v1.2.0 h1:xlsBNlGW2n4X6WYi0B84iOoAYWQT+iJFKWM2iZvpzNI=
 github.com/AllenDang/cimgui-go v1.2.0/go.mod h1:KT0QhbfG00LVdgN/eOGhnrSSG8lMfdBvYmZJCBgp2JM=
+github.com/AllenDang/cimgui-go v1.3.0 h1:iFK0SBjfOnd8qCnn8PLMFh/uTceuJGN0hVXRxokMz20=
+github.com/AllenDang/cimgui-go v1.3.0/go.mod h1:1i5vebTbRcCAlui+AUn3A3U0V2tu/qImW0NoLr+/Fek=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/andybalholm/brotli v1.0.4/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
 github.com/andybalholm/cascadia v1.3.1/go.mod h1:R4bJ1UQfqADjvDa4P6HZHLh/3OxWWEqc0Sk8XGwHqvA=
@@ -106,6 +108,8 @@ github.com/sugyan/ttygif v0.0.0-20160926114937-b539f0e7d1a9 h1:DG1dPcpI3bWM2ZUwM
 github.com/sugyan/ttygif v0.0.0-20160926114937-b539f0e7d1a9/go.mod h1:1yZppaBOgH2/xw8X4KwQICxsVwYGR711vqJKcL7SdC8=
 github.com/tetratelabs/wazero v1.8.1 h1:NrcgVbWfkWvVc4UtT4LRLDf91PsOzDzefMdwhLfA550=
 github.com/tetratelabs/wazero v1.8.1/go.mod h1:yAI0XTsMBhREkM/YDAK/zNou3GoiAce1P6+rp/wQhjs=
+github.com/tetratelabs/wazero v1.8.2 h1:yIgLR/b2bN31bjxwXHD8a3d+BogigR952csSDdLYEv4=
+github.com/tetratelabs/wazero v1.8.2/go.mod h1:yAI0XTsMBhREkM/YDAK/zNou3GoiAce1P6+rp/wQhjs=
 github.com/tomnomnom/linkheader v0.0.0-20180905144013-02ca5825eb80/go.mod h1:iFyPdL66DjUD96XmzVL3ZntbzcflLnznH0fr99w5VqE=
 github.com/ugorji/go v1.1.7/go.mod h1:kZn38zHttfInRq0xu/PH0az30d+z6vm202qpg1oXVMw=
 github.com/ugorji/go/codec v1.1.7/go.mod h1:Ax+UKWsSmolVDwsd+7N3ZtXu+yMGCf907BLYF3GoBXY=

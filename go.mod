@@ -8,7 +8,7 @@ require (
 )
 
 require (
-	github.com/AllenDang/cimgui-go v1.2.0
+	github.com/AllenDang/cimgui-go v1.3.0
 	github.com/askeladdk/aseprite v0.0.4
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
@@ -35,7 +35,7 @@ require (
 	github.com/hhrutter/lzw v1.0.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/peterhellberg/gfx v0.0.0-20240717094052-4fa835cea5a4 // indirect
-	github.com/tetratelabs/wazero v1.8.1 // indirect
+	github.com/tetratelabs/wazero v1.8.2 // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xyproto/burnpal v1.0.0 // indirect
 	github.com/xyproto/palgen v1.6.0 // indirect
