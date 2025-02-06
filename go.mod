@@ -4,7 +4,7 @@ go 1.23.4
 
 require (
 	github.com/leotaku/mobi v0.5.0
-	golang.org/x/image v0.23.0
+	golang.org/x/image v0.24.0
 )
 
 require (
@@ -29,18 +29,37 @@ require (
 )
 
 require (
-	github.com/ebitengine/purego v0.8.1 // indirect
+	github.com/BurntSushi/toml v1.0.0 // indirect
+	github.com/ebitengine/purego v0.8.2 // indirect
 	github.com/ericpauley/go-quantize v0.0.0-20200331213906-ae555eb2afa4 // indirect
+	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/hhrutter/lzw v1.0.0 // indirect
+	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
+	github.com/mattn/go-sqlite3 v1.13.0 // indirect
+	github.com/neelance/astrewrite v0.0.0-20160511093645-99348263ae86 // indirect
+	github.com/neelance/sourcemap v0.0.0-20200213170602-2833bce08e4c // indirect
 	github.com/peterhellberg/gfx v0.0.0-20240717094052-4fa835cea5a4 // indirect
+	github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749 // indirect
+	github.com/sirupsen/logrus v1.8.1 // indirect
+	github.com/spf13/cobra v1.2.1 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/sugyan/ttyread v0.0.0-20140728103301-67501e8d8a3b // indirect
 	github.com/tetratelabs/wazero v1.8.2 // indirect
+	github.com/vchimishuk/chub v0.0.0-20190501162134-36f1f5f7c9ef // indirect
 	github.com/x448/float16 v0.8.4 // indirect
 	github.com/xyproto/burnpal v1.0.0 // indirect
 	github.com/xyproto/palgen v1.6.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/crypto v0.0.0-20220112180741-5e0467b6c7ce // indirect
+	golang.org/x/mod v0.17.0 // indirect
+	golang.org/x/sync v0.11.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/term v0.5.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
+	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	honnef.co/go/tools v0.2.2 // indirect
 	vimagination.zapto.org/byteio v1.0.5 // indirect
 	vimagination.zapto.org/memio v1.1.0 // indirect
 	vimagination.zapto.org/parser v1.0.4 // indirect
