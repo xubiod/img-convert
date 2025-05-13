@@ -12,7 +12,7 @@ require (
 	github.com/askeladdk/aseprite v0.0.4
 	github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017
 	github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3
-	github.com/chai2010/webp v1.1.1
+	github.com/chai2010/webp v1.4.0
 	github.com/gen2brain/jpegxl v0.4.3
 	github.com/hhrutter/tiff v1.0.1
 	github.com/jbuchbinder/gopnm v0.0.0-20220507095634-e31f54490ce0
