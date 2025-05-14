@@ -9,8 +9,9 @@ github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017 h1:TWk6m6k3qegbUZsdsHk/
 github.com/blezek/tga v0.0.0-20150626111426-80720cbc1017/go.mod h1:WnX8JiQN+UtyUPq/1EIUaB2WVX3wdAmOBH5K52NyOO0=
 github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3 h1:lHZwKpae+uNaq/cdDcHouYfUUSm+J9M+O+i7NbTSvBU=
 github.com/bodgit/megasd v0.0.0-20200702170038-afc20ba65dc3/go.mod h1:S68t0jRtMN8UMz8cQRx7hYVMt7k8KdiA8Elc2keT9LE=
-github.com/chai2010/webp v1.1.1 h1:jTRmEccAJ4MGrhFOrPMpNGIJ/eybIgwKpcACsrTEapk=
 github.com/chai2010/webp v1.1.1/go.mod h1:0XVwvZWdjjdxpUEIf7b9g9VkHFnInUSYujwqTLEuldU=
+github.com/chai2010/webp v1.4.0 h1:6DA2pkkRUPnbOHvvsmGI3He1hBKf/bkRlniAiSGuEko=
+github.com/chai2010/webp v1.4.0/go.mod h1:0XVwvZWdjjdxpUEIf7b9g9VkHFnInUSYujwqTLEuldU=
 github.com/codegangsta/cli v0.0.0-20170128213959-347a9884a873/go.mod h1:/qJNoX69yVSKu5o4jLyXAENLRyk1uhi7zkbQ3slBdOA=
 github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d/go.mod h1:maD7wRr/U5Z6m/iR4s+kqSMx2CaBsrgA7czyZG/E6dU=
 github.com/cpuguy83/go-md2man/v2 v2.0.0/go.mod h1:maD7wRr/U5Z6m/iR4s+kqSMx2CaBsrgA7czyZG/E6dU=
