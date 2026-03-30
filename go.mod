@@ -1,10 +1,10 @@
 module github.com/xubiod/img-convert
 
-go 1.23.4
+go 1.25.0
 
 require (
 	github.com/leotaku/mobi v0.5.0
-	golang.org/x/image v0.24.0
+	golang.org/x/image v0.38.0
 )
 
 require (
